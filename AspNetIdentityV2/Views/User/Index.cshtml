@@ -1,0 +1,75 @@
+﻿@model List<AspNetIdentityV2.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Users";
+}
+
+<h4>User List</h4>
+<hr />
+<br />
+
+@if (!String.IsNullOrEmpty(ViewBag.ResultMessage))
+{
+    <div>
+        <p>
+            <code>Message: @ViewBag.ResultMessage</code>
+        </p>
+    </div>
+    <br />
+    ViewBag.ResultMessage = string.Empty;
+
+}
+
+
+<p>
+    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;@Html.ActionLink("Create New User", "Create", "User")
+</p>
+
+<br /><br />
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Login ID</th>
+        <th>Email ID</th>
+        <th>User Roles</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.Id</td>
+            <td>@user.UserName</td>
+            <td>@user.EmailId</td>
+           <td>
+
+                @foreach (var role in user.Roles)
+                {
+                    @role.Role.Name <br/>
+                }
+
+            </td>
+           <td>
+                @Html.ActionLink("Edit", "Edit", new { id = @user.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = @user.Id })
+            </td>
+        </tr>
+    }
+
+   @* @foreach (var user in ViewData["Users"] as Dictionary<string, string>)
+    {
+        <tr>
+            <td>@user.Value</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = @user.Key }) |
+            @Html.ActionLink("Delete", "Delete", new { id = @user.Key })
+        </td>
+    </tr>
+    }*@
+
+</table>
+
+<br/>
+<br />
+<br />

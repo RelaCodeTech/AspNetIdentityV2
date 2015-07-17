@@ -6,13 +6,18 @@
 <hr />
 <br />
 
-@Html.ActionLink("Create New Role", "Create", "Role")
+
+<p>
+    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>&nbsp;@Html.ActionLink("Create New Role", "Create", "Role") |
+    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;@Html.ActionLink("Manage User Roles", "ManageUserRoles", "Role")
+</p>
+
 
 <br /><br />
 
 <table>
     <tr>
-        <th>ID</th>
+        @*<th>ID</th>*@
         <th>Name</th>
         <th>Action</th>
     </tr>
@@ -20,7 +25,7 @@
     @foreach (var role in ViewData["Roles"] as Dictionary<string, string>)
     {
         <tr>
-            <td>@role.Key</td>
+            @*<td>@role.Key</td>*@
             <td>@role.Value</td>
             <td>@Html.ActionLink("Edit", "Edit", new { id = @role.Key }) | 
                 @Html.ActionLink("Delete", "Delete", new { id = @role.Key })</td>
@@ -29,6 +34,7 @@
 
 </table>
 
-
-
+<br />
+<br />
+<br />
 

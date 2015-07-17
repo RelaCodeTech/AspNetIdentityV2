@@ -1,0 +1,93 @@
+﻿@{
+    ViewBag.Title = "Manage User Roles";
+}
+
+<br />
+<h4>Manage User Roles</h4>
+<hr />
+<br />
+
+@if ( !String.IsNullOrEmpty(ViewBag.ResultMessage))
+{
+    <div>
+        <p>
+            <code>Message: @ViewBag.ResultMessage</code>
+        </p>
+    </div>
+    <br />
+    ViewBag.ResultMessage = string.Empty;
+
+}
+
+<p><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&nbsp;@Html.ActionLink("Back to Role Master", "Index", "Role")</p>
+
+<br />
+
+
+<h4>Role Add to User</h4>
+
+@using (Html.BeginForm("AddRoleToUser", "Role"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <p>
+        Username : @Html.TextBox("UserName")
+        Role Name: @Html.DropDownList("RoleName", (IEnumerable<SelectListItem>)ViewBag.Roles, "Select ...")
+
+    </p>
+
+    <input type="submit" value="Save" />
+}
+<br />
+
+<hr />
+<br />
+
+<h4>Get Roles for a User</h4>
+
+@using (Html.BeginForm("GetRolesForUser", "Role"))
+{
+    @Html.AntiForgeryToken()
+    <p>
+        @*Username : @Html.TextBox("UserName")*@
+        User Name: @Html.DropDownList("UserName", (IEnumerable<SelectListItem>) ViewBag.Users, "Select ...")
+        <input type="submit" value="Get Roles for this User" />
+    </p>
+}
+
+@if (ViewBag.RolesForThisUser != null)
+{
+    <div>
+        <h4>Roles for this user </h4>
+        <ol>
+            @foreach (string s in ViewBag.RolesForThisUser)
+            {
+                <li>@s</li>
+            }
+        </ol>
+    </div>
+}
+
+<hr />
+<br />
+<br />
+
+<h4>Delete A User from a Role</h4>
+
+@using (Html.BeginForm("DeleteRoleForUser", "Role"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <p>
+        Username : @Html.TextBox("UserName")
+        Role Name: @Html.DropDownList("RoleName", (IEnumerable<SelectListItem>)ViewBag.Roles, "Select ...")
+
+    </p>
+    <br />
+    <input type="submit" value="Delete this user from Role" />
+}
+
+<br />
+<br />

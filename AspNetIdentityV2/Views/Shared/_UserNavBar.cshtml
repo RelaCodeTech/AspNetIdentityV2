@@ -12,7 +12,7 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>
+                <li><p class="navbar-text"><span class="glyphicon glyphicon-th" aria-hidden="true"></span>&nbsp;@Html.ActionLink("Dashboard", "Index", "Dashboard", null, new { @style = "color:#9D9D9D;" }) </p></li>
             </ul>
 
             @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -21,9 +21,9 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <p class="navbar-text"><code>@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })</code></p>
+                        <p class="navbar-text"><code><span style="color: #4A4A4A;" class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage", style = "color:#4A4A4A;" })</code></p>
                     </li>
-                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off&nbsp;<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
                 </ul>
             }
 

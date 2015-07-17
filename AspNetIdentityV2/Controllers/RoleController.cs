@@ -21,7 +21,7 @@ namespace AspNetIdentityV2.Controllers
 
             Dictionary<string, string> ReadableRoles = new Dictionary<string, string>();
 
-            foreach(var role in allRoles)
+            foreach (var role in allRoles)
             {
                 ReadableRoles.Add(role.Id, role.Name);
             }
@@ -57,7 +57,7 @@ namespace AspNetIdentityV2.Controllers
             return RedirectToAction("Index");
         }
 
-                // GET: /Roles/Edit/5
+        // GET: /Roles/Edit/5
         public ActionResult Edit(string id)
         {
             var context = new ApplicationDbContext();
@@ -86,5 +86,96 @@ namespace AspNetIdentityV2.Controllers
             }
         }
 
-	}
+        public ActionResult ManageUserRoles()
+        {
+            var context = new ApplicationDbContext();
+            // prepopulat roles for the view dropdown
+            var roleList = context.Roles.OrderBy(r => r.Name).ToList().Select(rr =>
+                new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
+            ViewBag.Roles = roleList;
+
+            var userList = context.Users.OrderBy(r => r.UserName).ToList().Select(rr =>
+                new SelectListItem { Value = rr.UserName.ToString(), Text = rr.UserName }).ToList();
+            ViewBag.Users = userList;
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddRoleToUser(string UserName, string RoleName)
+        {
+            var context = new ApplicationDbContext();
+            ApplicationUser user = context.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+
+            var account = new AccountController();
+            account.UserManager.AddToRole(user.Id, RoleName);
+
+            ViewBag.ResultMessage = "Role added successfully !";
+
+            // prepopulat roles for the view dropdown
+            var list = context.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
+            ViewBag.Roles = list;
+
+            var userList = context.Users.OrderBy(r => r.UserName).ToList().Select(rr => new SelectListItem { Value = rr.UserName.ToString(), Text = rr.UserName }).ToList();
+            ViewBag.Users = userList;
+
+            return View("ManageUserRoles");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        //public ActionResult GetRolesForUser(FormCollection formCollection)
+        public ActionResult GetRolesForUser(string UserName)
+        {
+            //string UserName = formCollection["UserName"].ToString();
+
+            if (!string.IsNullOrWhiteSpace(UserName))
+            {
+                var context = new ApplicationDbContext();
+                ApplicationUser user = context.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+                var account = new AccountController();
+
+                ViewBag.RolesForThisUser = account.UserManager.GetRoles(user.Id);
+
+                // prepopulat roles for the view dropdown
+                var list = context.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
+                ViewBag.Roles = list;
+
+                var userList = context.Users.OrderBy(r => r.UserName).ToList().Select(rr => new SelectListItem { Value = rr.UserName.ToString(), Text = rr.UserName }).ToList();
+                ViewBag.Users = userList;
+            }
+
+            return View("ManageUserRoles");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteRoleForUser(string UserName, string RoleName)
+        {
+            var account = new AccountController();
+            var context = new ApplicationDbContext();
+            
+            ApplicationUser user = context.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+
+            if (account.UserManager.IsInRole(user.Id, RoleName))  
+            {
+                account.UserManager.RemoveFromRole(user.Id, RoleName);
+                ViewBag.ResultMessage = "Role removed from this user successfully !";
+            }
+            else
+            {
+                ViewBag.ResultMessage = "This user doesn't belong to selected role.";
+            }
+            // prepopulat roles for the view dropdown
+            var list = context.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
+            ViewBag.Roles = list;
+
+            var userList = context.Users.OrderBy(r => r.UserName).ToList().Select(rr => new SelectListItem { Value = rr.UserName.ToString(), Text = rr.UserName }).ToList();
+            ViewBag.Users = userList;
+
+            return View("ManageUserRoles");
+        }
+
+    }
 }
