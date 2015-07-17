@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+<h4>Create Role</h4>
+<hr/>
+<br/><br/>
+
+@using(Html.BeginForm())
+{
+    <label>Role Name:</label>
+    <input type="text" id="roleName" name="roleName" />
+    <br/>
+    <input type="submit" value="Submit" />
+}
+
+<br /><br />
+
+@Html.ActionLink("Back to List", "Index", "Role")
+
