@@ -10,7 +10,6 @@ namespace AspNetIdentityV2.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "AspNetIdentityV2.Models.ApplicationDbContext";
         }
 
         protected override void Seed(AspNetIdentityV2.Models.ApplicationDbContext context)

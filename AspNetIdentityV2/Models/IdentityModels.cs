@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿//using AspNetIdentityV2.Models.DbEfModels;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
+using System;
 
 namespace AspNetIdentityV2.Models
 {
@@ -6,6 +9,9 @@ namespace AspNetIdentityV2.Models
     public class ApplicationUser : IdentityUser
     {
         public string EmailId { get; set; }
+
+        //public virtual ICollection<Company> Companies { get; set; }
+        public string CompanyID { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

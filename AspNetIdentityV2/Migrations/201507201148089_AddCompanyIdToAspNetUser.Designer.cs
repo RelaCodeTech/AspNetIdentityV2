@@ -7,13 +7,13 @@ namespace AspNetIdentityV2.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.0.0-20911")]
-    public sealed partial class AddEmailToUserTable : IMigrationMetadata
+    public sealed partial class AddCompanyIdToAspNetUser : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddEmailToUserTable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddCompanyIdToAspNetUser));
         
         string IMigrationMetadata.Id
         {
-            get { return "201507171148513_AddEmailToUserTable"; }
+            get { return "201507201148089_AddCompanyIdToAspNetUser"; }
         }
         
         string IMigrationMetadata.Source

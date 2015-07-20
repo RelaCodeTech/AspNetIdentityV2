@@ -1,0 +1,66 @@
+﻿@model IEnumerable<AspNetIdentityV2.Models.ViewModels.Company>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h4>Company List</h4>
+
+@{
+    if (TempData.ContainsKey("NoAdditionalCompanyMsg"))
+    {
+        <p><code>@TempData["NoAdditionalCompanyMsg"].ToString()</code></p>
+        TempData.Remove("NoAdditionalCompanyMsg");
+    }
+}
+   
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyWebSite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyDetails)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyDesc)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyWebSite)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyDetails)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyDesc)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CompanyID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CompanyID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CompanyID })
+        </td>
+    </tr>
+}
+
+</table>
