@@ -6,11 +6,10 @@ using System.Web.Mvc;
 
 namespace AspNetIdentityV2.Controllers
 {
-    public class DashboardController : Controller
+    public class BusinessSetupController : Controller
     {
         //
-        // GET: /Dashboard/
-        [Authorize]
+        // GET: /BusinessSetup/
         public ActionResult Index()
         {
             return View();

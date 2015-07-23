@@ -19,6 +19,7 @@ namespace AspNetIdentityV2.Controllers
         {
             var context = new ApplicationDbContext();
             var allUsers = context.Users.ToList();
+            
             return View(allUsers);
         }
 

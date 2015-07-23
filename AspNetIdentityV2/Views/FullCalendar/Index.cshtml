@@ -17,8 +17,8 @@
     ViewBag.Title = "Appointments";
 }
 
-
-@Html.Partial("_MainSubMenuAppointments")
+@Html.Partial("_MainMenu", "FullCalendar")
+@Html.Partial("_MainSubMenuAppointments", "Calendar")
 
 <br />
 
@@ -47,7 +47,21 @@
             editable: true,
             allDaySlot: false,
             selectable: true,
-            slotMinutes: 15
+            slotMinutes: 15,
+
+            events: '/FullCalendar/GetAppointments',
+
+            eventClick: function (calEvent, jsEvent, view) {
+                alert('You clicked on event id: ' + calEvent.id
+                    + "\nSpecial ID: " + calEvent.someKey
+                    + "\nAnd the title is: " + calEvent.title
+                    + "\nAnd start time is: " + calEvent.start
+                    + "\nAnd end time is: " + calEvent.end
+                    + "\nAnd cust id is: " + calEvent.someKey
+                    );
+
+            }
+
         });
 
     });

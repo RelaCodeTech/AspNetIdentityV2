@@ -46,17 +46,10 @@ input[type="checkbox"].input-validation-error {
 
 Color codes -
 
-    windows color for bg - blue - #0cacd8
-    text color for above color - very-lightgrey - #f5f5f5
-
-    green color for bg - green - #75d870
-    text color for above color - darkgrey - #2c2c2c
-
-    grey color used for menu for bg - grey - #e5e5e5
-    text color for above color - darkgrey - #2c2c2c
-
-    lightgrey used for bg area in submenu - #f5f5f5
-
+    #0C8CAF;  /*--bit-darker windows blue
+    #2587A1; /*--more-darker windows blue
+    #EDEDED; /*--vry light grey for text
+    #f5f5f5; /*--vry light grey for text
 
 
 ******************************************************************************************************************/
@@ -64,8 +57,10 @@ Color codes -
 
 /*background color for active main-menu*/
 .nav-tabs > .active-tab > a, .nav-tabs > .active-tab > a:hover {
-    background-color: #e5e5e5;
-    color:#2c2c2c;
+    /*background-color: #e5e5e5;
+    color:#2c2c2c;*/
+    background-color: #0C8CAF;  /*--bit-darker windows blue*/
+    color:#EDEDED;
 }
 
 /*background color for sub-menu*/
@@ -76,10 +71,12 @@ Color codes -
 
 /*background color for active sub-menu pill*/
 .nav-pills > .active-pill > a, .nav-pills > .active-pill > a:hover {
-    /*background-color: #75d870;
+    /*background-color: #75d870; --Green
     color:#2c2c2c;*/
-    background-color: #0cacd8;
-    color: #f5f5f5;
+    /*background-color: #0cacd8;  --Windows Blue
+    color: #f5f5f5;*/
+    background-color: #2587A1; /*--more-darker windows blue*/
+    color:#f5f5f5;
 }
 
 /*reducing height of sub-menu*/

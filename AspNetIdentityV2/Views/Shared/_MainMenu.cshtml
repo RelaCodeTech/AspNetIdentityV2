@@ -1,14 +1,15 @@
 ﻿@using AspNetIdentityV2.Utilities;
+@model String
 
 <div class="container">
     <ul class="nav nav-tabs">
-        @*<li role="presentation" class="@Html.IsActive("Calendar", "Index")"><a href="@Url.Action("Index", "Calendar")"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>&nbsp;Appointments</a></li>*@
-        <li role="presentation" class="@Html.IsActive("FullCalendar", "Index")"><a href="@Url.Action("Index", "FullCalendar")"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>&nbsp;Appointments</a></li>
-        <li role="presentation" class="@Html.IsActive("Customer", "Index")"><a href="@Url.Action("Index", "Customer")"><span class="glyphicon glyphicon-king" aria-hidden="true"></span>&nbsp;Customers</a></li>
+        <li role="presentation" class="@Html.MakeActiveMenu("FullCalendar", Model)"><a href="@Url.Action("Index", "FullCalendar")"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>&nbsp;Appointments</a></li>
+        <li role="presentation" class="@Html.MakeActiveMenu("Customer", Model)"><a href="@Url.Action("Index", "Customer")"><span class="glyphicon glyphicon-king" aria-hidden="true"></span>&nbsp;Customers</a></li>
         <li role="presentation"><a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>&nbsp;Orders</a></li>
         <li role="presentation"><a href="#"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>&nbsp;Schedules</a></li>
         <li role="presentation"><a href="#"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp;Inventory</a></li>
         <li role="presentation"><a href="#"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>&nbsp;Marketing</a></li>
         <li role="presentation"><a href="#"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>&nbsp;Reports</a></li>
+        <li role="presentation" class="@Html.MakeActiveMenu("BusinessSetup", Model)"><a href="@Url.Action("Index", "BusinessSetup")"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;Business Setup</a></li>
     </ul>
 </div>

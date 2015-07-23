@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\AppointmentDAL.cs" />
     <Compile Include="DAL\CompanyDAL.cs" />
     <Compile Include="DbModel\Appointment.cs" />
     <Compile Include="DbModel\Company.cs" />

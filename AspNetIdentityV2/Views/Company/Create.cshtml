@@ -1,10 +1,12 @@
-﻿@model AspNetIdentityV2.Models.ViewModels.Company
+﻿@model SpaCloud.Models.DbModel.Company
 
 @{
     ViewBag.Title = "Create";
 }
+@Html.Partial("_MainMenu", "BusinessSetup")
+@Html.Partial("_MainSubMenuBusinessSetup", "Company")
 
-<h2>Create</h2>
+<h4>Create Company</h4>
 
 @using (Html.BeginForm()) 
 {

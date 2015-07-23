@@ -1,14 +1,17 @@
-﻿<div class="container submenu-area">
+﻿@using AspNetIdentityV2.Utilities;
+@model String
+
+<div class="container submenu-area">
     <br />
     <ul class="nav nav-pills">
-        <li role="presentation" class="active-pill"><a href="#">Manage Customers</a></li>
-        <li role="presentation"><a href="#">New Customer</a></li>
-        <li role="presentation"><a href="#">Details</a></li>
-        <li role="presentation"><a href="#">Orders</a></li>
-        <li role="presentation"><a href="#">Appointments</a></li>
-        <li role="presentation"><a href="#">Memberships</a></li>
-        <li role="presentation"><a href="#">CRM</a></li>
-        <li role="presentation"><a href="#">Documents</a></li>
+        <li role="presentation" class="@Html.MakeActiveSubMenu("Manage Customers", Model)"><a href="#">Manage Customers</a></li>
+        <li role="presentation" class="@Html.MakeActiveSubMenu("New Customer", Model)"><a href="#">New Customer</a></li>
+        <li role="presentation" class="@Html.MakeActiveSubMenu("Details", Model)"><a href="#">Details</a></li>
+        <li role="presentation" class="@Html.MakeActiveSubMenu("Orders", Model)"><a href="#">Orders</a></li>
+        <li role="presentation" class="@Html.MakeActiveSubMenu("Appointments", Model)"><a href="#">Appointments</a></li>
+        <li role="presentation" class="@Html.MakeActiveSubMenu("Memberships", Model)"><a href="#">Memberships</a></li>
+        <li role="presentation" class="@Html.MakeActiveSubMenu("CRM", Model)"><a href="#">CRM</a></li>
+        <li role="presentation" class="@Html.MakeActiveSubMenu("Documents", Model)"><a href="#">Documents</a></li>
     </ul>
     <br />
 </div>

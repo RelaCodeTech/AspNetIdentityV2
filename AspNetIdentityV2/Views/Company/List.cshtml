@@ -1,8 +1,10 @@
-﻿@model IEnumerable<AspNetIdentityV2.Models.ViewModels.Company>
+﻿@model IEnumerable<SpaCloud.Models.DbModel.Company>
 
 @{
     ViewBag.Title = "List";
 }
+@Html.Partial("_MainMenu", "BusinessSetup")
+@Html.Partial("_MainSubMenuBusinessSetup", "Company")
 
 <h4>Company List</h4>
 

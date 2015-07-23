@@ -1,7 +1,11 @@
-﻿@model AspNetIdentityV2.Models.CreateUserViewModel
+﻿@*@model AspNetIdentityV2.Models.CreateUserViewModel*@
+@model SpaCloud.Models.ViewModels.CreateUserViewModel
 @{
     ViewBag.Title = "Create User";
 }
+
+@Html.Partial("_MainMenu", "BusinessSetup")
+@Html.Partial("_MainSubMenuBusinessSetup", "System Users")
 
 <h4>Create New User</h4>
 <hr />

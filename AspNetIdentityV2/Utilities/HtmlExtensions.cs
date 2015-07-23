@@ -11,16 +11,10 @@ namespace AspNetIdentityV2.Utilities
     /// </summary>
     public static class HtmlExtensions
     {
-        /// <summary>
-        /// Custom HTML extension
-        /// </summary>
-        /// <param name="html"></param>
-        /// <param name="control"></param>
-        /// <param name="action"></param>
-        /// <returns></returns>
-        public static string IsActive(this HtmlHelper html,
-                                  string control,
-                                  string action)
+
+        public static string MakeActiveMenu(this HtmlHelper html,
+                          string menuName,
+                          string suppliedMenuName)
         {
             var routeData = html.ViewContext.RouteData;
 
@@ -28,10 +22,26 @@ namespace AspNetIdentityV2.Utilities
             var routeControl = (string)routeData.Values["controller"];
 
             // both must match
-            var returnActive = control == routeControl &&
-                               action == routeAction;
+            var returnActive = menuName == suppliedMenuName;
 
             return returnActive ? "active-tab" : "";
         }
+
+
+        public static string MakeActiveSubMenu(this HtmlHelper html,
+                  string menuName,
+                  string suppliedMenuName)
+        {
+            var routeData = html.ViewContext.RouteData;
+
+            var routeAction = (string)routeData.Values["action"];
+            var routeControl = (string)routeData.Values["controller"];
+
+            // both must match
+            var returnActive = menuName == suppliedMenuName;
+
+            return returnActive ? "active-pill" : "";
+        }
+
     }
 }

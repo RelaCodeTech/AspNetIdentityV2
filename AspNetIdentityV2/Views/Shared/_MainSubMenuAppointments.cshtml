@@ -1,9 +1,12 @@
-﻿<div class="container submenu-area">
+﻿@using AspNetIdentityV2.Utilities;
+@model String
+
+<div class="container submenu-area">
     <br />
     <ul class="nav nav-pills">
-        <li role="presentation" class="active-pill"><a href="#">Calendar</a></li>
-        <li role="presentation"><a href="#">New Appointment</a></li>
-        <li role="presentation"><a href="#">All Locations</a></li>
+        <li role="presentation" class="@Html.MakeActiveSubMenu("Calendar", Model)"><a href="@Url.Action("Index", "FullCalendar")">Calendar</a></li>
+        <li role="presentation" class="@Html.MakeActiveSubMenu("New Appointment", Model)"><a href="@Url.Action("Create", "Appointment")">New Appointment</a></li>
+        <li role="presentation" class="@Html.MakeActiveSubMenu("All Locations", Model)"><a href="#">All Locations</a></li>
     </ul>
     <br />
 </div>

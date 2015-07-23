@@ -161,19 +161,21 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CompanyController.cs" />
-    <Compile Include="Controllers\CustomerController.cs" />
-    <Compile Include="Controllers\DashboardController.cs" />
-    <Compile Include="Controllers\FullCalendarController.cs" />
+    <Compile Include="Controllers\Appointments\AppointmentController.cs" />
+    <Compile Include="Controllers\BusinessSetup\BusinessSetupController.cs" />
+    <Compile Include="Controllers\BusinessSetup\CompanyController.cs" />
+    <Compile Include="Controllers\Customers\CustomerController.cs" />
+    <Compile Include="Controllers\Appointments\FullCalendarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\RoleController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\BusinessSetup\RoleController.cs" />
+    <Compile Include="Controllers\BusinessSetup\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utilities\Enums.cs" />
     <Compile Include="Utilities\HtmlExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -272,7 +274,6 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Role\Create.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Views\Role\Edit.cshtml" />
@@ -289,6 +290,9 @@
     <Content Include="Views\Shared\_MainSubMenuCustomers.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\FullCalendar\Index.cshtml" />
+    <Content Include="Views\BusinessSetup\Index.cshtml" />
+    <Content Include="Views\Shared\_MainSubMenuBusinessSetup.cshtml" />
+    <Content Include="Views\Appointment\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
