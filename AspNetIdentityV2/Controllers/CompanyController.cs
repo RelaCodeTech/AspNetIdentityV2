@@ -4,8 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
-using AspNetIdentityV2.Models.DAL;
-using AspNetIdentityV2.Models.ViewModels;
+using SpaCloud.Models.DbModel;
+using SpaCloud.Models.DAL;
 
 namespace AspNetIdentityV2.Controllers
 {

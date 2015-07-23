@@ -39,9 +39,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Dapper">
-      <HintPath>..\packages\Dapper.1.42\lib\net45\Dapper.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -165,31 +162,28 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\FullCalendarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201507201148089_AddCompanyIdToAspNetUser.cs" />
-    <Compile Include="Migrations\201507201148089_AddCompanyIdToAspNetUser.Designer.cs">
-      <DependentUpon>201507201148089_AddCompanyIdToAspNetUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\DAL\CompanyDAL.cs" />
-    <Compile Include="Models\ViewModels\AccountViewModels.cs" />
-    <Compile Include="Models\ViewModels\Company.cs" />
-    <Compile Include="Models\ViewModels\CreateUserViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utilities\HtmlExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\fullcalendar.css" />
+    <Content Include="Content\fullcalendar.min.css" />
+    <Content Include="Content\fullcalendar.print.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -237,6 +231,8 @@
     <Content Include="Icon.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\fullcalendar.js" />
+    <Content Include="Scripts\fullcalendar.min.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
@@ -288,10 +284,14 @@
     <Content Include="Views\Company\Index.cshtml" />
     <Content Include="Views\Company\List.cshtml" />
     <Content Include="Views\Company\Create.cshtml" />
+    <Content Include="Views\Shared\_MainMenu.cshtml" />
+    <Content Include="Views\Shared\_MainSubMenuAppointments.cshtml" />
+    <Content Include="Views\Shared\_MainSubMenuCustomers.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\FullCalendar\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\DbEfModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -301,9 +301,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201507201148089_AddCompanyIdToAspNetUser.resx">
-      <DependentUpon>201507201148089_AddCompanyIdToAspNetUser.cs</DependentUpon>
-    </EmbeddedResource>
+    <ProjectReference Include="..\SpaCloud.Models\SpaCloud.Models.csproj">
+      <Project>{1314fe98-00f2-4096-af4c-ad28806bac1d}</Project>
+      <Name>SpaCloud.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

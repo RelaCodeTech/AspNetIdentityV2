@@ -17,23 +17,21 @@
 }
 
 <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;@Html.ActionLink("User Master", "Index", "User")</p>
-
 <br /><br />
 
 <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>&nbsp;@Html.ActionLink("Role Master", "Index", "Role")</p>
-
 <br /><br />
 
 @{
     if (User.IsInRole("CompanyAdmin"))
     {
         <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;@Html.ActionLink("Company Master", "List", "Company")</p>
-
-        <br />
+        <br /><br />
+        
     }
 }
 
-
-<br />
+<p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>&nbsp;@Html.ActionLink("Manage Appointments", "Index", "Calendar")</p>
+<br /><br />
 
 

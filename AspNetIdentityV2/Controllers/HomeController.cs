@@ -12,7 +12,7 @@ namespace AspNetIdentityV2.Controllers
         {
             if (Request.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Dashboard");
+                return RedirectToAction("Index", "FullCalendar");
             }
             return View();
         }

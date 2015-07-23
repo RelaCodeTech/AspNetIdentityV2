@@ -1,6 +1,7 @@
 ﻿using AspNetIdentityV2.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using SpaCloud.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AspNetIdentityV2.Models
+namespace SpaCloud.Models.ViewModels
 {
     public class ExternalLoginConfirmationViewModel
     {

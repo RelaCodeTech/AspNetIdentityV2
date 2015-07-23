@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace AspNetIdentityV2.Models.ViewModels
+namespace SpaCloud.Models.DbModel
 {
     public class Company
     {

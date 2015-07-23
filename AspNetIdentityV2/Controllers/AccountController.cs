@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using AspNetIdentityV2.Models;
+using SpaCloud.Models.ViewModels;
 
 namespace AspNetIdentityV2.Controllers
 {
@@ -50,7 +51,7 @@ namespace AspNetIdentityV2.Controllers
                 {
                     await SignInAsync(user, model.RememberMe);
                     //return RedirectToLocal(returnUrl);
-                    return RedirectToAction("Index", "Dashboard");
+                    return RedirectToAction("Index", "FullCalendar");
                 }
                 else
                 {
