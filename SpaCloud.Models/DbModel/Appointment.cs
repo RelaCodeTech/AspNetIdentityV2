@@ -9,19 +9,19 @@ namespace SpaCloud.Models.DbModel
 {
     public class Appointment
     {
-        public int ID { get; set; }
+        public Int64 ID { get; set; }
 
         [Display(Name = "Title")]
         public string Title { get; set; }
 
         [Display(Name = "Company")]
-        public string CompanyId { get; set; }
+        public Int64 CompanyId { get; set; }
 
         [Display(Name = "Branch")]
-        public string BranchId { get; set; }
+        public Int64 BranchId { get; set; }
 
         [Display(Name = "Customer")]
-        public string CustomerId { get; set; }
+        public Int64 CustomerId { get; set; }
 
         [Display(Name = "Package")]
         public string PackageId { get; set; }

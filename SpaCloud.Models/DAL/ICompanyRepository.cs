@@ -9,7 +9,7 @@ namespace SpaCloud.Models.DAL
 {
     public interface ICompanyRepository: IDisposable
     {
-        IEnumerable<Company> LoggedInUsersCompanyList(string companyID);
+        IEnumerable<Company> LoggedInUsersCompanyList(Int64 companyID);
         string CreateCompany(Company NewCompany, string UserID);
     }
 }

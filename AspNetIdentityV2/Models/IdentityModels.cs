@@ -28,22 +28,22 @@ namespace AspNetIdentityV2.Models
         /// <summary>
         /// Company ID
         /// </summary>
-        public string CompanyID { get; set; }
+        public Int64 CompanyID { get; set; }
 
         /// <summary>
         /// User is associated with this Branch
         /// </summary>
-        public string BaseBranchID { get; set; }
+        public Int64 BaseBranchID { get; set; }
 
         /// <summary>
-        /// BaseBranchID + Additional Branch IDs : Concatenated
+        /// BaseBranchID + Additional Branch IDs : Concatenated by appending .
         /// </summary>
         public string AddnlBranchIDs { get; set; }
 
         /// <summary>
         /// Employee ID
         /// </summary>
-        public string EmployeeID { get; set; }
+        public Int64 EmployeeID { get; set; }
 
         /// <summary>
         /// Created Date Time

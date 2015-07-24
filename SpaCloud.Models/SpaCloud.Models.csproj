@@ -49,6 +49,7 @@
     <Compile Include="DAL\IApppointmentRepository.cs" />
     <Compile Include="DAL\ICompanyRepository.cs" />
     <Compile Include="DbModel\Appointment.cs" />
+    <Compile Include="DbModel\Branch.cs" />
     <Compile Include="DbModel\Company.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\AccountViewModels.cs" />

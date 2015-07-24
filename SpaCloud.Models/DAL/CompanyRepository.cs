@@ -25,9 +25,9 @@ namespace SpaCloud.Models.DAL
         /// </summary>
         /// <param name="companyID"></param>
         /// <returns></returns>
-        public IEnumerable<Company> LoggedInUsersCompanyList(string companyID)
+        public IEnumerable<Company> LoggedInUsersCompanyList(Int64 companyID)
         {
-            string query = "select * from Company where CompanyID = '" + companyID + "'";
+            string query = "select * from Company where CompanyID = " + companyID;
             var result = this._con.Query<Company>(query);
             return result;
         }  
@@ -39,28 +39,27 @@ namespace SpaCloud.Models.DAL
         /// <returns></returns>
         public string CreateCompany(Company NewCompany, string UserID)
         {
-            string newCompanyID = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
-            NewCompany.CompanyID = newCompanyID;
+            //string newCompanyID = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
+            //NewCompany.CompanyID = newCompanyID;
 
             string queryInsertCompany = @"INSERT INTO [dbo].[Company]
-           ([CompanyID]
-           ,[CompanyName]
+           ([CompanyName]
            ,[CompanyEmail]
            ,[CompanyWebSite]
            ,[CompanyDetails]
            ,[CompanyDesc])
      VALUES
-           (@CompanyID, @CompanyName, @CompanyEmail, @CompanyWebSite, @CompanyDetails, @CompanyDesc)";
+           (@CompanyName, @CompanyEmail, @CompanyWebSite, @CompanyDetails, @CompanyDesc)";
 
 
             //creates new company
             this._con.Query<int>(queryInsertCompany, NewCompany);
 
-            string queryUpdateUser = @"update [dbo].[AspNetUsers] set [CompanyID] = '" + newCompanyID +
-                         @"' where [Id] = '" + UserID + "'";
+            //string queryUpdateUser = @"update [dbo].[AspNetUsers] set [CompanyID] = '" + newCompanyID +
+            //             @"' where [Id] = '" + UserID + "'";
 
-            //associates new company with logged in user
-            this._con.Query<int>(queryUpdateUser, null);
+            ////associates new company with logged in user
+            //this._con.Query<int>(queryUpdateUser, null);
 
             return "success";
         }

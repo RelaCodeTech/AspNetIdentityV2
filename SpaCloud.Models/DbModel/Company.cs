@@ -8,7 +8,7 @@ namespace SpaCloud.Models.DbModel
 {
     public class Company
     {
-        public string CompanyID { get; set; }
+        public Int64 CompanyID { get; set; }
 
         [Required]
         [Display(Name="Name")]

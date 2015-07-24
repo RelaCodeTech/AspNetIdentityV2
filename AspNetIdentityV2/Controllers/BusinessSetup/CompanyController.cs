@@ -27,7 +27,7 @@ namespace AspNetIdentityV2.Controllers
             var account = new AccountController();
             var currentUser = account.UserManager.FindById(User.Identity.GetUserId());
 
-            if (!String.IsNullOrEmpty(currentUser.CompanyID))
+            if (currentUser.CompanyID < 0)
             {
                 this._companyRepository.LoggedInUsersCompanyList(currentUser.CompanyID);
                 return RedirectToAction("List", "Company");
@@ -40,9 +40,9 @@ namespace AspNetIdentityV2.Controllers
         {
             var account = new AccountController();
             var currentUser = account.UserManager.FindById(User.Identity.GetUserId());
-            string companyID = String.Empty;
+            Int64 companyID = -1;
 
-            if (!String.IsNullOrEmpty(currentUser.CompanyID))
+            if (currentUser.CompanyID > 0)
             {
                 companyID = currentUser.CompanyID;
             }
@@ -57,7 +57,7 @@ namespace AspNetIdentityV2.Controllers
             var currentUser = account.UserManager.FindById(User.Identity.GetUserId());
             
             //user cannot create more than 1 company
-            if (!String.IsNullOrEmpty(currentUser.CompanyID))
+            if (currentUser.CompanyID > 0)
             {
                 TempData["NoAdditionalCompanyMsg"] = "Sorry. Cannot create additional Companies. Please contact support - support@myapp.com";
                 return RedirectToAction("List", "Company");
