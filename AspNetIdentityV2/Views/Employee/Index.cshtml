@@ -1,0 +1,108 @@
+﻿@model IEnumerable<SpaCloud.Models.DbModel.Employee>
+
+@{
+    ViewBag.Title = "Employee List";
+}
+@Html.Partial("_MainMenu", "BusinessSetup")
+@Html.Partial("_MainSubMenuBusinessSetup", "Employees")
+
+
+<h4>Employee List</h4>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EmpID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BranchID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmpCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmpFName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmpLName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmpGender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmpTypeID)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.IsOnPayRoll)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmpContactNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmpCreatedDt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmpCreatedBy)
+        </th>*@
+        <th>Actions</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmpID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BranchID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmpCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmpFName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmpLName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmpGender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmpTypeID)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.IsOnPayRoll)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmpContactNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmpCreatedDt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmpCreatedBy)
+        </td>*@
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

@@ -45,12 +45,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAL\AppointmentRepository.cs" />
+    <Compile Include="DAL\BranchRepository.cs" />
     <Compile Include="DAL\CompanyRepository.cs" />
+    <Compile Include="DAL\EmployeeRepository.cs" />
     <Compile Include="DAL\IApppointmentRepository.cs" />
+    <Compile Include="DAL\IBranchRepository.cs" />
     <Compile Include="DAL\ICompanyRepository.cs" />
+    <Compile Include="DAL\IEmployeeRepository.cs" />
     <Compile Include="DbModel\Appointment.cs" />
     <Compile Include="DbModel\Branch.cs" />
     <Compile Include="DbModel\Company.cs" />
+    <Compile Include="DbModel\Employee.cs" />
+    <Compile Include="DbModel\LookupEmployeeType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\AccountViewModels.cs" />
     <Compile Include="ViewModel\CreateUserViewModel.cs" />

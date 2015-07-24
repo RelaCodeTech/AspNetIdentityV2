@@ -1,0 +1,120 @@
+﻿@model IEnumerable<SpaCloud.Models.DbModel.Branch>
+
+@{
+    ViewBag.Title = "Branch List";
+}
+@Html.Partial("_MainMenu", "BusinessSetup")
+@Html.Partial("_MainSubMenuBusinessSetup", "Branches")
+
+
+<h4>Branch List</h4>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BranchRegion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BranchCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BranchName)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.BranchHotelName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BranchSpaName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BranchAddress)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.BranchCity)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.BranchState)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BranchCountry)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BranchContactNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BranchComment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BranchIsActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BranchCreatedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BranchCreatedDt)
+        </th>*@
+        <th>Actions</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BranchRegion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BranchCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BranchName)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.BranchHotelName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BranchSpaName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BranchAddress)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.BranchCity)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.BranchState)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BranchCountry)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BranchContactNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BranchComment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BranchIsActive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BranchCreatedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BranchCreatedDt)
+        </td>*@
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.BranchID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.BranchID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.BranchID })
+        </td>
+    </tr>
+}
+
+</table>
