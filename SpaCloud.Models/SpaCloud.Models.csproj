@@ -44,8 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL\AppointmentDAL.cs" />
-    <Compile Include="DAL\CompanyDAL.cs" />
+    <Compile Include="DAL\AppointmentRepository.cs" />
+    <Compile Include="DAL\CompanyRepository.cs" />
+    <Compile Include="DAL\IApppointmentRepository.cs" />
+    <Compile Include="DAL\ICompanyRepository.cs" />
     <Compile Include="DbModel\Appointment.cs" />
     <Compile Include="DbModel\Company.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -54,6 +56,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

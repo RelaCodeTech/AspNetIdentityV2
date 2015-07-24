@@ -2,16 +2,69 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
 using System;
+using System.Security.Claims;
+using Microsoft.AspNet.Identity;
+using System.Threading.Tasks;
 
 namespace AspNetIdentityV2.Models
 {
-    // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
+    /// <summary>
+    /// Application Users
+    /// </summary>
     public class ApplicationUser : IdentityUser
     {
-        public string EmailId { get; set; }
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(
+            UserManager<ApplicationUser> manager)
+        {
+            // Note the authenticationType must match the one 
+            // defined in CookieAuthenticationOptions.AuthenticationType
+            var userIdentity =
+                await manager.CreateIdentityAsync(this,
+                    DefaultAuthenticationTypes.ApplicationCookie);
+            // Add custom user claims here
+            return userIdentity;
+        }
 
-        //public virtual ICollection<Company> Companies { get; set; }
+        /// <summary>
+        /// Company ID
+        /// </summary>
         public string CompanyID { get; set; }
+
+        /// <summary>
+        /// User is associated with this Branch
+        /// </summary>
+        public string BaseBranchID { get; set; }
+
+        /// <summary>
+        /// BaseBranchID + Additional Branch IDs : Concatenated
+        /// </summary>
+        public string AddnlBranchIDs { get; set; }
+
+        /// <summary>
+        /// Employee ID
+        /// </summary>
+        public string EmployeeID { get; set; }
+
+        /// <summary>
+        /// Created Date Time
+        /// </summary>
+        public DateTime? CreatedDt { get; set; }
+    }
+
+    /// <summary>
+    /// Application User Roles
+    /// </summary>
+    public class ApplicationRole : IdentityRole
+    {
+        /// <summary>
+        /// Role Description
+        /// </summary>
+        public string RoleDesc { get; set; }
+
+        /// <summary>
+        /// IF visible to Application = Y else is Internal = N
+        /// </summary>
+        public string IsPublic { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

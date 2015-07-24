@@ -8,8 +8,8 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
-using AspNetIdentityV2.Models;
 using SpaCloud.Models.ViewModels;
+using AspNetIdentityV2.Models;
 
 namespace AspNetIdentityV2.Controllers
 {

@@ -12,6 +12,14 @@ namespace AspNetIdentityV2.Controllers
     [Authorize]
     public class CompanyController : Controller
     {
+        private ICompanyRepository _companyRepository;
+        private string _dbConnStringName = AspNetIdentityV2.Utilities.AppReadOnlyVar.DbConnString;
+
+        public CompanyController()
+        {
+            this._companyRepository = new CompanyRepository(this._dbConnStringName);
+        }
+
         //
         // GET: /Company/
         public ActionResult Index()
@@ -21,8 +29,7 @@ namespace AspNetIdentityV2.Controllers
 
             if (!String.IsNullOrEmpty(currentUser.CompanyID))
             {
-                CompanyDAL objCompanyDAL = new CompanyDAL();
-                objCompanyDAL.LoggedInUsersCompanyList(currentUser.CompanyID);
+                this._companyRepository.LoggedInUsersCompanyList(currentUser.CompanyID);
                 return RedirectToAction("List", "Company");
             }
 
@@ -40,8 +47,7 @@ namespace AspNetIdentityV2.Controllers
                 companyID = currentUser.CompanyID;
             }
 
-            CompanyDAL objCompanyDAL = new CompanyDAL();
-            return View(objCompanyDAL.LoggedInUsersCompanyList(companyID));
+            return View(this._companyRepository.LoggedInUsersCompanyList(companyID));
 
         }
 
@@ -64,8 +70,7 @@ namespace AspNetIdentityV2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Company NewCompany)
         {
-            CompanyDAL objCompanyDAL = new CompanyDAL();
-            objCompanyDAL.CreateCompany(NewCompany, User.Identity.GetUserId());
+            this._companyRepository.CreateCompany(NewCompany, User.Identity.GetUserId());
 
             return RedirectToAction("List", "Company");
         }

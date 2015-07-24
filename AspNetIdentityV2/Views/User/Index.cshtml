@@ -44,12 +44,12 @@
         <tr>
             <td>@user.Id</td>
             <td>@user.UserName</td>
-            <td>@user.EmailId</td>
+            <td>@user.Email</td>
            <td>
 
                 @foreach (var role in user.Roles)
                 {
-                    @role.Role.Name <br/>
+                    @role.RoleId <br/>
                 }
 
             </td>

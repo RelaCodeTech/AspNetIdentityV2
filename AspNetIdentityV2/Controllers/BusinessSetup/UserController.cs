@@ -1,6 +1,7 @@
 ﻿using AspNetIdentityV2.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+//using SpaCloud.Models.DbModel;
 using SpaCloud.Models.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,7 @@ namespace AspNetIdentityV2.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser() { UserName = NewUser.UserName };
-                user.EmailId = NewUser.EmailId;
+                user.Email = NewUser.EmailId;
                 var account = new AccountController();
                 var result = account.UserManager.Create(user, NewUser.Password);
                 if (result.Succeeded)

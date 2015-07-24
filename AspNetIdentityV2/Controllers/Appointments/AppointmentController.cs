@@ -4,11 +4,20 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SpaCloud.Models.DbModel;
+using SpaCloud.Models.DAL;
 
 namespace AspNetIdentityV2.Controllers.Appointments
 {
     public class AppointmentController : Controller
     {
+        private IApppointmentRepository _appointmentRepository;
+        private string _dbConnStringName = AspNetIdentityV2.Utilities.AppReadOnlyVar.DbConnString;
+
+        public AppointmentController()
+        {
+            this._appointmentRepository = new AppointmentRepository(this._dbConnStringName);
+        }
+
         //
         // GET: /Appointment/
         public ActionResult Index()
@@ -35,11 +44,9 @@ namespace AspNetIdentityV2.Controllers.Appointments
         [HttpPost]
         public ActionResult Create(Appointment NewAppointment)
         {
-            SpaCloud.Models.DAL.AppointmentDAL ObjAppointmentDAL = new SpaCloud.Models.DAL.AppointmentDAL();
-
             try
             {
-                ObjAppointmentDAL.CreateAppointment(NewAppointment);
+                this._appointmentRepository.CreateAppointment(NewAppointment);
                 return RedirectToAction("Index", "FullCalendar");
             }
             catch
