@@ -1,12 +1,18 @@
-﻿@using AspNetIdentityV2.Utilities;
-@model String
-
+﻿
 <div class="container submenu-area">
     <br />
-    <ul class="nav nav-pills">
-        <li role="presentation" class="@Html.MakeActiveSubMenu("Calendar", Model)"><a href="@Url.Action("Index", "FullCalendar")">Calendar</a></li>
-        <li role="presentation" class="@Html.MakeActiveSubMenu("New Appointment", Model)"><a href="@Url.Action("Create", "Appointment")">New Appointment</a></li>
-        <li role="presentation" class="@Html.MakeActiveSubMenu("All Locations", Model)"><a href="#">All Locations</a></li>
-    </ul>
+
+    <div class="row">
+        <div class="col-lg-7">
+            <div class="input-group pull-right" style="width:300px">
+                <input type="text" class="form-control" placeholder="Search Appointments...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">Go!</button>
+                </span>
+            </div><!-- /input-group -->
+        </div>
+    </div><!-- row -->
+
     <br />
-</div>
+
+    </div>

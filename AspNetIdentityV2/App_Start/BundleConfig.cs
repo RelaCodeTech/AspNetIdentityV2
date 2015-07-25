@@ -10,7 +10,9 @@ namespace AspNetIdentityV2
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-2.1.4.min.js",
-                        "~/Scripts/jquery-ui-1.11.4.min.js"));
+                        "~/Scripts/jquery-ui-1.11.4.min.js",
+                        "~/Scripts/moment.min.js"
+                        ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate.min.js",
@@ -23,11 +25,15 @@ namespace AspNetIdentityV2
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/Scripts/bootstrap-datetimepicker.min.js"
+                      ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/bootstrap-datetimepicker.min.css",
+                      "~/Content/site.css"
+                      ));
         }
     }
 }
