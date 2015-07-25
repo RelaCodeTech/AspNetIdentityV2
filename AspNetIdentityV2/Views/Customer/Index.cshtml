@@ -1,12 +1,119 @@
-﻿
-@{
-    ViewBag.Title = "Customers";
-}
+﻿@model IEnumerable<SpaCloud.Models.DbModel.Customer>
 
+@{
+    ViewBag.Title = "Customer List";
+}
 @Html.Partial("_MainMenu", "Customer")
 @Html.Partial("_MainSubMenuCustomers", "Manage Customers")
 
-<h4>All Customers</h4>
-<br/>
-<hr/>
+<h4>Customer List</h4>
 
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerTypeID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerFname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerLname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerGender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerMobileNo)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.CustomerDOB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerEmailID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerAltMobileNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerNotes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerCreatedBranchID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerCountry)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerCreatedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerIsActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerCreatedDt)
+        </th>*@
+        <th>Action</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerTypeID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerFname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerLname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerGender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerMobileNo)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.CustomerDOB)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerEmailID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerAltMobileNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerNotes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerCreatedBranchID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerCountry)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerCreatedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerIsActive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerCreatedDt)
+        </td>*@
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CustomerID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CustomerID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CustomerID })
+        </td>
+    </tr>
+}
+
+</table>

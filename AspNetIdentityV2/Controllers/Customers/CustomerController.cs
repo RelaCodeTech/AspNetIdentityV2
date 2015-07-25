@@ -1,18 +1,31 @@
-﻿using System;
+﻿using SpaCloud.Models.DAL.CustomerDAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+
 
 namespace AspNetIdentityV2.Controllers
 {
     public class CustomerController : Controller
     {
+        private ICustomerRepository _customerRepository;
+        private string _dbConnStringName = AspNetIdentityV2.Utilities.AppReadOnlyVar.DbConnString;
+
+        public CustomerController()
+        {
+            this._customerRepository = new CustomerRepository(this._dbConnStringName);
+        }
+
         //
         // GET: /Customer/
         public ActionResult Index()
         {
-            return View();
+            var account = new AccountController();
+            var currentUser = account.UserManager.FindById(User.Identity.GetUserId());
+            return View(this._customerRepository.GetCustomers(currentUser.CompanyID));
         }
 
         //

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetIdentityV2", "AspNetI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaCloud.Models", "SpaCloud.Models\SpaCloud.Models.csproj", "{1314FE98-00F2-4096-AF4C-AD28806BAC1D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaCloud.EF", "SpaCloud.EF\SpaCloud.EF.csproj", "{5ABEBD9C-9C69-4815-8E40-CD9FEE074D4F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1314FE98-00F2-4096-AF4C-AD28806BAC1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1314FE98-00F2-4096-AF4C-AD28806BAC1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1314FE98-00F2-4096-AF4C-AD28806BAC1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5ABEBD9C-9C69-4815-8E40-CD9FEE074D4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5ABEBD9C-9C69-4815-8E40-CD9FEE074D4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5ABEBD9C-9C69-4815-8E40-CD9FEE074D4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5ABEBD9C-9C69-4815-8E40-CD9FEE074D4F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

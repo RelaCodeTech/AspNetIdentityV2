@@ -1,0 +1,898 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DevTestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AppointmentDiary">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CompanyId" Type="bigint" Nullable="false" />
+          <Property Name="BranchId" Type="bigint" Nullable="false" />
+          <Property Name="CustomerId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PackageId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="DateTimeScheduled" Type="datetime" Nullable="false" />
+          <Property Name="AppointmentLength" Type="int" Nullable="false" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="128" />
+          <Property Name="StatusENUM" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="RoleDesc" Type="nvarchar(max)" />
+          <Property Name="IsPublic" Type="nvarchar(max)" />
+          <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CompanyID" Type="bigint" Nullable="false" />
+          <Property Name="BaseBranchID" Type="bigint" Nullable="false" />
+          <Property Name="AddnlBranchIDs" Type="nvarchar(max)" />
+          <Property Name="EmployeeID" Type="bigint" Nullable="false" />
+          <Property Name="CreatedDt" Type="datetime" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="BranchID" />
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="BranchID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyID" Type="bigint" Nullable="false" />
+          <Property Name="BranchRegion" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="BranchCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BranchName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="BranchHotelName" Type="nvarchar" MaxLength="50" />
+          <Property Name="BranchSpaName" Type="nvarchar" MaxLength="50" />
+          <Property Name="BranchAddress" Type="nvarchar(max)" />
+          <Property Name="BranchCity" Type="nvarchar" MaxLength="50" />
+          <Property Name="BranchState" Type="nvarchar" MaxLength="50" />
+          <Property Name="BranchCountry" Type="nvarchar" MaxLength="50" />
+          <Property Name="BranchContactNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="BranchComment" Type="nvarchar(max)" />
+          <Property Name="BranchIsActive" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="BranchCreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="BranchCreatedDt" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CompanyEmail" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CompanyWebSite" Type="nvarchar" MaxLength="128" />
+          <Property Name="CompanyDetails" Type="nvarchar(max)" />
+          <Property Name="CompanyDesc" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CustomerID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyID" Type="bigint" Nullable="false" />
+          <Property Name="CustomerTypeID" Type="int" Nullable="false" />
+          <Property Name="CustomerFname" Type="nvarchar" MaxLength="50" />
+          <Property Name="CustomerLname" Type="nvarchar" MaxLength="50" />
+          <Property Name="CustomerGender" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="CustomerMobileNo" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="CustomerDOB" Type="datetime" />
+          <Property Name="CustomerEmailID" Type="nvarchar" MaxLength="50" />
+          <Property Name="CustomerAltMobileNo" Type="nvarchar" MaxLength="15" />
+          <Property Name="CustomerNotes" Type="nvarchar(max)" />
+          <Property Name="CustomerCreatedBranchID" Type="bigint" Nullable="false" />
+          <Property Name="CustomerCountry" Type="nvarchar" MaxLength="50" />
+          <Property Name="CustomerCreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CustomerIsActive" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="CustomerCreatedDt" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmpID" />
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="EmpID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyID" Type="bigint" Nullable="false" />
+          <Property Name="BranchID" Type="bigint" Nullable="false" />
+          <Property Name="EmpCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmpFName" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmpLName" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmpGender" Type="char" MaxLength="1" />
+          <Property Name="EmpTypeID" Type="int" />
+          <Property Name="IsOnPayRoll" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="EmpContactNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="IsActive" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="EmpCreatedDt" Type="datetime" Nullable="false" />
+          <Property Name="EmpCreatedBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="LookupBranchRegion">
+          <Key>
+            <PropertyRef Name="BranchRegionID" />
+          </Key>
+          <Property Name="BranchRegionID" Type="int" Nullable="false" />
+          <Property Name="RegionName" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="LookupCustomerType">
+          <Key>
+            <PropertyRef Name="CustomerTypeID" />
+          </Key>
+          <Property Name="CustomerTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerType" Type="nvarchar" MaxLength="50" />
+          <Property Name="CustomerTypeDesc" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="LookupEmployeeType">
+          <Key>
+            <PropertyRef Name="EmpTypeID" />
+          </Key>
+          <Property Name="EmpTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmpType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TypeDesc" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Branch_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="Branch" Type="Self.Branch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Branch">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer_LookupCustomerType">
+          <End Role="LookupCustomerType" Type="Self.LookupCustomerType" Multiplicity="1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LookupCustomerType">
+              <PropertyRef Name="CustomerTypeID" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="CustomerTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_LookupEmployeeType">
+          <End Role="LookupEmployeeType" Type="Self.LookupEmployeeType" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LookupEmployeeType">
+              <PropertyRef Name="EmpTypeID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="EmpTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="ADD_NEW_ROLE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ROLE_CODE" Type="varchar" Mode="In" />
+          <Parameter Name="ROLE_DESC" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ADD_NEW_USER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="USER_FNAME" Type="varchar" Mode="In" />
+          <Parameter Name="USER_LNAME" Type="varchar" Mode="In" />
+          <Parameter Name="USER_ROLE_ID" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="DevTestModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AppointmentDiary" EntityType="Self.AppointmentDiary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Branch" EntityType="Self.Branch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LookupBranchRegion" EntityType="Self.LookupBranchRegion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LookupCustomerType" EntityType="Self.LookupCustomerType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LookupEmployeeType" EntityType="Self.LookupEmployeeType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Branch_Company" Association="Self.FK_Branch_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Branch" EntitySet="Branch" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer_Company" Association="Self.FK_Customer_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Customer" EntitySet="Customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer_LookupCustomerType" Association="Self.FK_Customer_LookupCustomerType">
+            <End Role="LookupCustomerType" EntitySet="LookupCustomerType" />
+            <End Role="Customer" EntitySet="Customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_LookupEmployeeType" Association="Self.FK_Employee_LookupEmployeeType">
+            <End Role="LookupEmployeeType" EntitySet="LookupEmployeeType" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DevTestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AppointmentDiary">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CompanyId" Type="Int64" Nullable="false" />
+          <Property Name="BranchId" Type="Int64" Nullable="false" />
+          <Property Name="CustomerId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PackageId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateTimeScheduled" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AppointmentLength" Type="Int32" Nullable="false" />
+          <Property Name="Notes" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="StatusENUM" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RoleDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsPublic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Discriminator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CompanyID" Type="Int64" Nullable="false" />
+          <Property Name="BaseBranchID" Type="Int64" Nullable="false" />
+          <Property Name="AddnlBranchIDs" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeID" Type="Int64" Nullable="false" />
+          <Property Name="CreatedDt" Type="DateTime" Precision="3" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="BranchID" />
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="BranchID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyID" Type="Int64" Nullable="false" />
+          <Property Name="BranchRegion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BranchCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BranchName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BranchHotelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BranchSpaName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BranchAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BranchCity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BranchState" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BranchCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BranchContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BranchComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BranchIsActive" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="BranchCreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BranchCreatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_Branch_Company" FromRole="Branch" ToRole="Company" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CompanyEmail" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CompanyWebSite" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Branches" Relationship="Self.FK_Branch_Company" FromRole="Company" ToRole="Branch" />
+          <NavigationProperty Name="Customers" Relationship="Self.FK_Customer_Company" FromRole="Company" ToRole="Customer" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyID" Type="Int64" Nullable="false" />
+          <Property Name="CustomerTypeID" Type="Int32" Nullable="false" />
+          <Property Name="CustomerFname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerLname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerGender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CustomerMobileNo" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CustomerDOB" Type="DateTime" Precision="3" />
+          <Property Name="CustomerEmailID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerAltMobileNo" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerCreatedBranchID" Type="Int64" Nullable="false" />
+          <Property Name="CustomerCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerCreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerIsActive" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CustomerCreatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_Customer_Company" FromRole="Customer" ToRole="Company" />
+          <NavigationProperty Name="LookupCustomerType" Relationship="Self.FK_Customer_LookupCustomerType" FromRole="Customer" ToRole="LookupCustomerType" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmpID" />
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="EmpID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyID" Type="Int64" Nullable="false" />
+          <Property Name="BranchID" Type="Int64" Nullable="false" />
+          <Property Name="EmpCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmpFName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmpLName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmpGender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="EmpTypeID" Type="Int32" />
+          <Property Name="IsOnPayRoll" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="EmpContactNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="EmpCreatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EmpCreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LookupEmployeeType" Relationship="Self.FK_Employee_LookupEmployeeType" FromRole="Employee" ToRole="LookupEmployeeType" />
+        </EntityType>
+        <EntityType Name="LookupBranchRegion">
+          <Key>
+            <PropertyRef Name="BranchRegionID" />
+          </Key>
+          <Property Name="BranchRegionID" Type="Int32" Nullable="false" />
+          <Property Name="RegionName" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="LookupCustomerType">
+          <Key>
+            <PropertyRef Name="CustomerTypeID" />
+          </Key>
+          <Property Name="CustomerTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerTypeDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Customers" Relationship="Self.FK_Customer_LookupCustomerType" FromRole="LookupCustomerType" ToRole="Customer" />
+        </EntityType>
+        <EntityType Name="LookupEmployeeType">
+          <Key>
+            <PropertyRef Name="EmpTypeID" />
+          </Key>
+          <Property Name="EmpTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TypeDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_LookupEmployeeType" FromRole="LookupEmployeeType" ToRole="Employee" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Branch_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="Branch" Type="Self.Branch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Branch">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer_LookupCustomerType">
+          <End Role="LookupCustomerType" Type="Self.LookupCustomerType" Multiplicity="1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LookupCustomerType">
+              <PropertyRef Name="CustomerTypeID" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="CustomerTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_LookupEmployeeType">
+          <End Role="LookupEmployeeType" Type="Self.LookupEmployeeType" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LookupEmployeeType">
+              <PropertyRef Name="EmpTypeID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="EmpTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="DevTestEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="AppointmentDiaries" EntityType="Self.AppointmentDiary" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="Branches" EntityType="Self.Branch" />
+          <EntitySet Name="Companies" EntityType="Self.Company" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="LookupBranchRegions" EntityType="Self.LookupBranchRegion" />
+          <EntitySet Name="LookupCustomerTypes" EntityType="Self.LookupCustomerType" />
+          <EntitySet Name="LookupEmployeeTypes" EntityType="Self.LookupEmployeeType" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Branch_Company" Association="Self.FK_Branch_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Branch" EntitySet="Branches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer_Company" Association="Self.FK_Customer_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Customer" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer_LookupCustomerType" Association="Self.FK_Customer_LookupCustomerType">
+            <End Role="LookupCustomerType" EntitySet="LookupCustomerTypes" />
+            <End Role="Customer" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_LookupEmployeeType" Association="Self.FK_Employee_LookupEmployeeType">
+            <End Role="LookupEmployeeType" EntitySet="LookupEmployeeTypes" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <FunctionImport Name="ADD_NEW_ROLE">
+            <Parameter Name="ROLE_CODE" Mode="In" Type="String" />
+            <Parameter Name="ROLE_DESC" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ADD_NEW_USER">
+            <Parameter Name="USER_FNAME" Mode="In" Type="String" />
+            <Parameter Name="USER_LNAME" Mode="In" Type="String" />
+            <Parameter Name="USER_ROLE_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DevTestModelStoreContainer" CdmEntityContainer="DevTestEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="DevTestModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AppointmentDiaries">
+            <EntityTypeMapping TypeName="DevTestModel.AppointmentDiary">
+              <MappingFragment StoreEntitySet="AppointmentDiary">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="PackageId" ColumnName="PackageId" />
+                <ScalarProperty Name="DateTimeScheduled" ColumnName="DateTimeScheduled" />
+                <ScalarProperty Name="AppointmentLength" ColumnName="AppointmentLength" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="StatusENUM" ColumnName="StatusENUM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="DevTestModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RoleDesc" ColumnName="RoleDesc" />
+                <ScalarProperty Name="IsPublic" ColumnName="IsPublic" />
+                <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="DevTestModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="DevTestModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="DevTestModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="BaseBranchID" ColumnName="BaseBranchID" />
+                <ScalarProperty Name="AddnlBranchIDs" ColumnName="AddnlBranchIDs" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Branches">
+            <EntityTypeMapping TypeName="DevTestModel.Branch">
+              <MappingFragment StoreEntitySet="Branch">
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="BranchRegion" ColumnName="BranchRegion" />
+                <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
+                <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+                <ScalarProperty Name="BranchHotelName" ColumnName="BranchHotelName" />
+                <ScalarProperty Name="BranchSpaName" ColumnName="BranchSpaName" />
+                <ScalarProperty Name="BranchAddress" ColumnName="BranchAddress" />
+                <ScalarProperty Name="BranchCity" ColumnName="BranchCity" />
+                <ScalarProperty Name="BranchState" ColumnName="BranchState" />
+                <ScalarProperty Name="BranchCountry" ColumnName="BranchCountry" />
+                <ScalarProperty Name="BranchContactNo" ColumnName="BranchContactNo" />
+                <ScalarProperty Name="BranchComment" ColumnName="BranchComment" />
+                <ScalarProperty Name="BranchIsActive" ColumnName="BranchIsActive" />
+                <ScalarProperty Name="BranchCreatedBy" ColumnName="BranchCreatedBy" />
+                <ScalarProperty Name="BranchCreatedDt" ColumnName="BranchCreatedDt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="DevTestModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CompanyEmail" ColumnName="CompanyEmail" />
+                <ScalarProperty Name="CompanyWebSite" ColumnName="CompanyWebSite" />
+                <ScalarProperty Name="CompanyDetails" ColumnName="CompanyDetails" />
+                <ScalarProperty Name="CompanyDesc" ColumnName="CompanyDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="DevTestModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="CustomerTypeID" ColumnName="CustomerTypeID" />
+                <ScalarProperty Name="CustomerFname" ColumnName="CustomerFname" />
+                <ScalarProperty Name="CustomerLname" ColumnName="CustomerLname" />
+                <ScalarProperty Name="CustomerGender" ColumnName="CustomerGender" />
+                <ScalarProperty Name="CustomerMobileNo" ColumnName="CustomerMobileNo" />
+                <ScalarProperty Name="CustomerDOB" ColumnName="CustomerDOB" />
+                <ScalarProperty Name="CustomerEmailID" ColumnName="CustomerEmailID" />
+                <ScalarProperty Name="CustomerAltMobileNo" ColumnName="CustomerAltMobileNo" />
+                <ScalarProperty Name="CustomerNotes" ColumnName="CustomerNotes" />
+                <ScalarProperty Name="CustomerCreatedBranchID" ColumnName="CustomerCreatedBranchID" />
+                <ScalarProperty Name="CustomerCountry" ColumnName="CustomerCountry" />
+                <ScalarProperty Name="CustomerCreatedBy" ColumnName="CustomerCreatedBy" />
+                <ScalarProperty Name="CustomerIsActive" ColumnName="CustomerIsActive" />
+                <ScalarProperty Name="CustomerCreatedDt" ColumnName="CustomerCreatedDt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="DevTestModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+                <ScalarProperty Name="EmpCode" ColumnName="EmpCode" />
+                <ScalarProperty Name="EmpFName" ColumnName="EmpFName" />
+                <ScalarProperty Name="EmpLName" ColumnName="EmpLName" />
+                <ScalarProperty Name="EmpGender" ColumnName="EmpGender" />
+                <ScalarProperty Name="EmpTypeID" ColumnName="EmpTypeID" />
+                <ScalarProperty Name="IsOnPayRoll" ColumnName="IsOnPayRoll" />
+                <ScalarProperty Name="EmpContactNo" ColumnName="EmpContactNo" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EmpCreatedDt" ColumnName="EmpCreatedDt" />
+                <ScalarProperty Name="EmpCreatedBy" ColumnName="EmpCreatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LookupBranchRegions">
+            <EntityTypeMapping TypeName="DevTestModel.LookupBranchRegion">
+              <MappingFragment StoreEntitySet="LookupBranchRegion">
+                <ScalarProperty Name="BranchRegionID" ColumnName="BranchRegionID" />
+                <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LookupCustomerTypes">
+            <EntityTypeMapping TypeName="DevTestModel.LookupCustomerType">
+              <MappingFragment StoreEntitySet="LookupCustomerType">
+                <ScalarProperty Name="CustomerTypeID" ColumnName="CustomerTypeID" />
+                <ScalarProperty Name="CustomerType" ColumnName="CustomerType" />
+                <ScalarProperty Name="CustomerTypeDesc" ColumnName="CustomerTypeDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LookupEmployeeTypes">
+            <EntityTypeMapping TypeName="DevTestModel.LookupEmployeeType">
+              <MappingFragment StoreEntitySet="LookupEmployeeType">
+                <ScalarProperty Name="EmpTypeID" ColumnName="EmpTypeID" />
+                <ScalarProperty Name="EmpType" ColumnName="EmpType" />
+                <ScalarProperty Name="TypeDesc" ColumnName="TypeDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="DevTestModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="ADD_NEW_ROLE" FunctionName="DevTestModel.Store.ADD_NEW_ROLE" />
+          <FunctionImportMapping FunctionImportName="ADD_NEW_USER" FunctionName="DevTestModel.Store.ADD_NEW_USER" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

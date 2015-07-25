@@ -47,6 +47,8 @@
     <Compile Include="DAL\AppointmentDAL\AppointmentRepository.cs" />
     <Compile Include="DAL\BranchDAL\BranchRepository.cs" />
     <Compile Include="DAL\CompanyDAL\CompanyRepository.cs" />
+    <Compile Include="DAL\CustomerDAL\CustomerRepository.cs" />
+    <Compile Include="DAL\CustomerDAL\ICustomerRepository.cs" />
     <Compile Include="DAL\Employee\EmployeeRepository.cs" />
     <Compile Include="DAL\AppointmentDAL\IApppointmentRepository.cs" />
     <Compile Include="DAL\BranchDAL\IBranchRepository.cs" />
@@ -55,7 +57,9 @@
     <Compile Include="DbModel\Appointment.cs" />
     <Compile Include="DbModel\Branch.cs" />
     <Compile Include="DbModel\Company.cs" />
+    <Compile Include="DbModel\Customer.cs" />
     <Compile Include="DbModel\Employee.cs" />
+    <Compile Include="DbModel\LookupCustomerType.cs" />
     <Compile Include="DbModel\LookupEmployeeType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\AccountViewModels.cs" />

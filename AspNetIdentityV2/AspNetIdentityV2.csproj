@@ -293,12 +293,12 @@
     <Content Include="Views\Shared\_MainMenu.cshtml" />
     <Content Include="Views\Shared\_MainSubMenuAppointments.cshtml" />
     <Content Include="Views\Shared\_MainSubMenuCustomers.cshtml" />
-    <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\FullCalendar\Index.cshtml" />
     <Content Include="Views\BusinessSetup\Index.cshtml" />
     <Content Include="Views\Shared\_MainSubMenuBusinessSetup.cshtml" />
     <Content Include="Views\Appointment\Create.cshtml" />
     <Content Include="Views\Branch\Index.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
