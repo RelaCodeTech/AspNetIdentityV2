@@ -55,6 +55,8 @@
     <Compile Include="DAL\BranchDAL\IBranchRepository.cs" />
     <Compile Include="DAL\CompanyDAL\ICompanyRepository.cs" />
     <Compile Include="DAL\Employee\IEmployeeRepository.cs" />
+    <Compile Include="DAL\PkgTrtmntDAL\IPkgTrtmntRepository.cs" />
+    <Compile Include="DAL\PkgTrtmntDAL\PkgTrtmntRepository.cs" />
     <Compile Include="DbModel\Appointment.cs" />
     <Compile Include="DbModel\Branch.cs" />
     <Compile Include="DbModel\Company.cs" />
@@ -62,6 +64,9 @@
     <Compile Include="DbModel\Employee.cs" />
     <Compile Include="DbModel\LookupCustomerType.cs" />
     <Compile Include="DbModel\LookupEmployeeType.cs" />
+    <Compile Include="DbModel\Package.cs" />
+    <Compile Include="DbModel\Treatment.cs" />
+    <Compile Include="DbModel\XrefPackageTreatment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\AccountViewModels.cs" />
     <Compile Include="ViewModel\CreateUserViewModel.cs" />

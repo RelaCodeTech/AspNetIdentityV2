@@ -40,6 +40,19 @@ namespace SpaCloud.EF.Models
         public virtual DbSet<LookupBranchRegion> LookupBranchRegions { get; set; }
         public virtual DbSet<LookupCustomerType> LookupCustomerTypes { get; set; }
         public virtual DbSet<LookupEmployeeType> LookupEmployeeTypes { get; set; }
+        public virtual DbSet<BranchTreatmentCost> BranchTreatmentCosts { get; set; }
+        public virtual DbSet<CustomerMembership> CustomerMemberships { get; set; }
+        public virtual DbSet<EmployeeType> EmployeeTypes { get; set; }
+        public virtual DbSet<GiftCert> GiftCerts { get; set; }
+        public virtual DbSet<LookupCountry> LookupCountries { get; set; }
+        public virtual DbSet<LookupState> LookupStates { get; set; }
+        public virtual DbSet<Membership> Memberships { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<Package> Packages { get; set; }
+        public virtual DbSet<Tax> Taxes { get; set; }
+        public virtual DbSet<Treatment> Treatments { get; set; }
+        public virtual DbSet<Voucher> Vouchers { get; set; }
+        public virtual DbSet<XrefPackageTreatment> XrefPackageTreatments { get; set; }
     
         public virtual int ADD_NEW_ROLE(string rOLE_CODE, string rOLE_DESC)
         {

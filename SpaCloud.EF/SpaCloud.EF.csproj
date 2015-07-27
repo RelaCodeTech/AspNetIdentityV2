@@ -67,10 +67,16 @@
     <Compile Include="Models\Branch.cs">
       <DependentUpon>SpaDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BranchTreatmentCost.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Company.cs">
       <DependentUpon>SpaDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CustomerMembership.cs">
       <DependentUpon>SpaDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C__MigrationHistory.cs">
@@ -79,13 +85,34 @@
     <Compile Include="Models\Employee.cs">
       <DependentUpon>SpaDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EmployeeType.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GiftCert.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\LookupBranchRegion.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LookupCountry.cs">
       <DependentUpon>SpaDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LookupCustomerType.cs">
       <DependentUpon>SpaDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LookupEmployeeType.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LookupState.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Membership.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Package.cs">
       <DependentUpon>SpaDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SpaDbModel.Context.cs">
@@ -102,6 +129,18 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SpaDbModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tax.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Treatment.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Voucher.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\XrefPackageTreatment.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

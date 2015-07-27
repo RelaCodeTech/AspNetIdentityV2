@@ -1,0 +1,92 @@
+﻿@model IEnumerable<SpaCloud.Models.DbModel.XrefPackageTreatment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.Partial("_MainMenu", "BusinessSetup")
+@Html.Partial("_MainSubMenuBusinessSetup", "Packages and Treatments")
+
+<h4>Packages and Treatments</h4>
+<hr />
+<br />
+<p>
+    @Html.ActionLink("Create New", "Create") |
+    @Html.ActionLink("Manage Packages", "Create") |
+    @Html.ActionLink("Manage Treatments", "Create")
+</p>
+<table class="table">
+    @*<tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PackageTreatmentXrefID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PackageID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TreatmentID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Package.PackageName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Treatment.TreatmentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyID)
+            </th>
+            <th></th>
+        </tr>*@
+
+    @{
+        var _prevPkg = String.Empty;
+        var _currPkg = String.Empty;
+
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+
+                    @{_currPkg = item.Package.PackageName;}
+
+                    @if (!String.Equals(_prevPkg, _currPkg))
+                    {
+                        <p><b>@item.Package.PackageName</b> @Html.ActionLink("Add Treatments", "Add", new { id = item.Package.PackageID }) | @Html.ActionLink("Remove Package", "Delete", new { id = item.Package.PackageID })</p>
+                        <p style="padding-left:3em;">@item.Treatment.TreatmentName    @Html.ActionLink("Delete", "Delete", new { id = item.Treatment.TreatmentID })</p>
+                    }
+                    else
+                    {
+                        <p style="padding-left:3em;">@item.Treatment.TreatmentName @Html.ActionLink("Delete", "Delete", new { id = item.Treatment.TreatmentID })</p>
+                    }
+
+                    @{_prevPkg = item.Package.PackageName;
+
+                    _currPkg = String.Empty;}
+
+                </td>
+            </tr>
+        }
+    }
+
+    @*@foreach (var item in Model) {
+        <tr>
+
+
+            <td>
+                @item.Package.PackageName
+            </td>
+            <td>
+                @item.Treatment.TreatmentName
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+        }*@
+
+
+
+</table>

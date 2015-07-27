@@ -25,6 +25,23 @@
         <AssociationConnector Association="DevTestModel.FK_Customer_LookupCustomerType" ManuallyRouted="false" />
         <AssociationConnector Association="DevTestModel.FK_Employee_LookupEmployeeType" ManuallyRouted="false" />
         <AssociationConnector Association="DevTestModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DevTestModel.BranchTreatmentCost" Width="1.5" PointX="12.75" PointY="6.75" />
+        <EntityTypeShape EntityType="DevTestModel.CustomerMembership" Width="1.5" PointX="13.75" PointY="9.75" />
+        <EntityTypeShape EntityType="DevTestModel.EmployeeType" Width="1.5" PointX="12.75" PointY="3.875" />
+        <EntityTypeShape EntityType="DevTestModel.GiftCert" Width="1.5" PointX="10.75" PointY="13.75" />
+        <EntityTypeShape EntityType="DevTestModel.LookupCountry" Width="1.5" PointX="12.75" PointY="1" />
+        <EntityTypeShape EntityType="DevTestModel.LookupState" Width="1.5" PointX="15" PointY="0.875" />
+        <EntityTypeShape EntityType="DevTestModel.Membership" Width="1.5" PointX="12.75" PointY="13.75" />
+        <EntityTypeShape EntityType="DevTestModel.Order" Width="1.5" PointX="14.75" PointY="3.75" />
+        <EntityTypeShape EntityType="DevTestModel.Package" Width="1.5" PointX="8.75" PointY="12.875" />
+        <EntityTypeShape EntityType="DevTestModel.Tax" Width="1.5" PointX="14.75" PointY="13.75" />
+        <EntityTypeShape EntityType="DevTestModel.Treatment" Width="1.5" PointX="8.75" PointY="9.875" />
+        <EntityTypeShape EntityType="DevTestModel.Voucher" Width="1.5" PointX="0.75" PointY="15.75" />
+        <EntityTypeShape EntityType="DevTestModel.XrefPackageTreatment" Width="1.5" PointX="11" PointY="9.875" />
+        <AssociationConnector Association="DevTestModel.FK_Employee_LookupEmployeeType1" />
+        <AssociationConnector Association="DevTestModel.FK_LookupState_LookupCountry" />
+        <AssociationConnector Association="DevTestModel.FK_XrefPackageTreatment_Package" />
+        <AssociationConnector Association="DevTestModel.FK_XrefPackageTreatment_Treatment" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

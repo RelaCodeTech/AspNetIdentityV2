@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DevTestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DevTestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -112,6 +112,17 @@
           <Property Name="BranchCreatedBy" Type="nvarchar" MaxLength="50" />
           <Property Name="BranchCreatedDt" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="BranchTreatmentCost">
+          <Key>
+            <PropertyRef Name="BranchTreatmentCostID" />
+          </Key>
+          <Property Name="BranchTreatmentCostID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BranchID" Type="bigint" Nullable="false" />
+          <Property Name="CompanyID" Type="bigint" Nullable="false" />
+          <Property Name="PackageTreatmentXrefID" Type="bigint" Nullable="false" />
+          <Property Name="TreatmentCost" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Company">
           <Key>
             <PropertyRef Name="CompanyID" />
@@ -145,6 +156,18 @@
           <Property Name="CustomerIsActive" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="CustomerCreatedDt" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="CustomerMembership">
+          <Key>
+            <PropertyRef Name="CustomerMembershipID" />
+          </Key>
+          <Property Name="CustomerMembershipID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerID" Type="bigint" Nullable="false" />
+          <Property Name="CreatedAtBranchID" Type="bigint" Nullable="false" />
+          <Property Name="MembershipID" Type="bigint" Nullable="false" />
+          <Property Name="IsMembershipActive" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="MembershipStartDt" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Employee">
           <Key>
             <PropertyRef Name="EmpID" />
@@ -152,7 +175,7 @@
           </Key>
           <Property Name="EmpID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CompanyID" Type="bigint" Nullable="false" />
-          <Property Name="BranchID" Type="bigint" Nullable="false" />
+          <Property Name="BaseBranchID" Type="bigint" Nullable="false" />
           <Property Name="EmpCode" Type="nvarchar" MaxLength="50" />
           <Property Name="EmpFName" Type="nvarchar" MaxLength="50" />
           <Property Name="EmpLName" Type="nvarchar" MaxLength="50" />
@@ -164,6 +187,29 @@
           <Property Name="EmpCreatedDt" Type="datetime" Nullable="false" />
           <Property Name="EmpCreatedBy" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="EmployeeType">
+          <Key>
+            <PropertyRef Name="EmpTypeID" />
+          </Key>
+          <Property Name="EmpTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmpType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TypeDesc" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="GiftCert">
+          <Key>
+            <PropertyRef Name="GiftCertID" />
+          </Key>
+          <Property Name="GiftCertID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyID" Type="bigint" Nullable="false" />
+          <Property Name="IssuedAtBranchID" Type="bigint" Nullable="false" />
+          <Property Name="GiftCertCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="GiftCertDesc" Type="nvarchar" MaxLength="100" />
+          <Property Name="GiftCertStartDt" Type="datetime" />
+          <Property Name="GiftCertEndDt" Type="datetime" />
+          <Property Name="IsGiftCertActive" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="GiftCertAmount" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="LookupBranchRegion">
           <Key>
             <PropertyRef Name="BranchRegionID" />
@@ -171,6 +217,14 @@
           <Property Name="BranchRegionID" Type="int" Nullable="false" />
           <Property Name="RegionName" Type="nvarchar" MaxLength="32" Nullable="false" />
           <Property Name="Comment" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="LookupCountry">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="CountryName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="LookupCustomerType">
           <Key>
@@ -180,13 +234,92 @@
           <Property Name="CustomerType" Type="nvarchar" MaxLength="50" />
           <Property Name="CustomerTypeDesc" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="LookupEmployeeType">
+        <EntityType Name="LookupState">
           <Key>
-            <PropertyRef Name="EmpTypeID" />
+            <PropertyRef Name="StateID" />
           </Key>
-          <Property Name="EmpTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EmpType" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="TypeDesc" Type="nvarchar" MaxLength="50" />
+          <Property Name="StateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryID" Type="int" Nullable="false" />
+          <Property Name="StateCode" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="StateName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Membership">
+          <Key>
+            <PropertyRef Name="MembershipID" />
+          </Key>
+          <Property Name="MembershipID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyID" Type="bigint" Nullable="false" />
+          <Property Name="MembershipName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MembershipDesc" Type="nvarchar" MaxLength="50" />
+          <Property Name="MembershipCost" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="MembershipDurationMonths" Type="int" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyID" Type="bigint" Nullable="false" />
+          <Property Name="BranchID" Type="bigint" Nullable="false" />
+          <Property Name="CustomerID" Type="bigint" Nullable="false" />
+          <Property Name="OrderDt" Type="datetime" Nullable="false" />
+          <Property Name="OrderDiscount" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="OrderGrossAmt" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="OrderNetAmt" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="OrderCreatedBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Package">
+          <Key>
+            <PropertyRef Name="PackageID" />
+          </Key>
+          <Property Name="PackageID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyID" Type="bigint" Nullable="false" />
+          <Property Name="PackageName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PackageDesc" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreatedDt" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tax">
+          <Key>
+            <PropertyRef Name="TaxID" />
+          </Key>
+          <Property Name="TaxID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyID" Type="bigint" Nullable="false" />
+          <Property Name="BranchID" Type="bigint" Nullable="false" />
+          <Property Name="TaxName" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="TaxPercentage" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="TaxDesc" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Treatment">
+          <Key>
+            <PropertyRef Name="TreatmentID" />
+          </Key>
+          <Property Name="TreatmentID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyID" Type="bigint" Nullable="false" />
+          <Property Name="TreatmentName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TreatmentDesc" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreatedDt" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Voucher">
+          <Key>
+            <PropertyRef Name="VoucherID" />
+          </Key>
+          <Property Name="VoucherID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyID" Type="bigint" Nullable="false" />
+          <Property Name="VoucherCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="VoucherDesc" Type="nvarchar" MaxLength="100" />
+          <Property Name="VoucherStartDt" Type="datetime" />
+          <Property Name="VoucherEndDt" Type="datetime" />
+          <Property Name="IsVoucherActive" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="VoucherAmount" Type="decimal" Precision="8" Scale="2" />
+        </EntityType>
+        <EntityType Name="XrefPackageTreatment">
+          <Key>
+            <PropertyRef Name="PackageTreatmentXrefID" />
+          </Key>
+          <Property Name="PackageTreatmentXrefID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PackageID" Type="bigint" Nullable="false" />
+          <Property Name="TreatmentID" Type="bigint" Nullable="false" />
+          <Property Name="CompanyID" Type="bigint" Nullable="false" />
         </EntityType>
         <Association Name="FK_Branch_Company">
           <End Role="Company" Type="Self.Company" Multiplicity="1" />
@@ -281,14 +414,50 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Employee_LookupEmployeeType">
-          <End Role="LookupEmployeeType" Type="Self.LookupEmployeeType" Multiplicity="0..1" />
+          <End Role="EmployeeType" Type="Self.EmployeeType" Multiplicity="0..1" />
           <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="LookupEmployeeType">
+            <Principal Role="EmployeeType">
               <PropertyRef Name="EmpTypeID" />
             </Principal>
             <Dependent Role="Employee">
               <PropertyRef Name="EmpTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LookupState_LookupCountry">
+          <End Role="LookupCountry" Type="Self.LookupCountry" Multiplicity="1" />
+          <End Role="LookupState" Type="Self.LookupState" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LookupCountry">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="LookupState">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_XrefPackageTreatment_Package">
+          <End Role="Package" Type="Self.Package" Multiplicity="1" />
+          <End Role="XrefPackageTreatment" Type="Self.XrefPackageTreatment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Package">
+              <PropertyRef Name="PackageID" />
+            </Principal>
+            <Dependent Role="XrefPackageTreatment">
+              <PropertyRef Name="PackageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_XrefPackageTreatment_Treatment">
+          <End Role="Treatment" Type="Self.Treatment" Multiplicity="1" />
+          <End Role="XrefPackageTreatment" Type="Self.XrefPackageTreatment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Treatment">
+              <PropertyRef Name="TreatmentID" />
+            </Principal>
+            <Dependent Role="XrefPackageTreatment">
+              <PropertyRef Name="TreatmentID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -310,12 +479,24 @@
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Branch" EntityType="Self.Branch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BranchTreatmentCost" EntityType="Self.BranchTreatmentCost" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomerMembership" EntityType="Self.CustomerMembership" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeType" EntityType="Self.EmployeeType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GiftCert" EntityType="Self.GiftCert" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LookupBranchRegion" EntityType="Self.LookupBranchRegion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LookupCountry" EntityType="Self.LookupCountry" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LookupCustomerType" EntityType="Self.LookupCustomerType" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="LookupEmployeeType" EntityType="Self.LookupEmployeeType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LookupState" EntityType="Self.LookupState" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Membership" EntityType="Self.Membership" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Package" EntityType="Self.Package" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tax" EntityType="Self.Tax" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Treatment" EntityType="Self.Treatment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Voucher" EntityType="Self.Voucher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="XrefPackageTreatment" EntityType="Self.XrefPackageTreatment" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Branch_Company" Association="Self.FK_Branch_Company">
             <End Role="Company" EntitySet="Company" />
             <End Role="Branch" EntitySet="Branch" />
@@ -345,12 +526,23 @@
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
           <AssociationSet Name="FK_Employee_LookupEmployeeType" Association="Self.FK_Employee_LookupEmployeeType">
-            <End Role="LookupEmployeeType" EntitySet="LookupEmployeeType" />
+            <End Role="EmployeeType" EntitySet="EmployeeType" />
             <End Role="Employee" EntitySet="Employee" />
           </AssociationSet>
+          <AssociationSet Name="FK_LookupState_LookupCountry" Association="Self.FK_LookupState_LookupCountry">
+            <End Role="LookupCountry" EntitySet="LookupCountry" />
+            <End Role="LookupState" EntitySet="LookupState" />
+          </AssociationSet>
+          <AssociationSet Name="FK_XrefPackageTreatment_Package" Association="Self.FK_XrefPackageTreatment_Package">
+            <End Role="Package" EntitySet="Package" />
+            <End Role="XrefPackageTreatment" EntitySet="XrefPackageTreatment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_XrefPackageTreatment_Treatment" Association="Self.FK_XrefPackageTreatment_Treatment">
+            <End Role="Treatment" EntitySet="Treatment" />
+            <End Role="XrefPackageTreatment" EntitySet="XrefPackageTreatment" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DevTestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -516,6 +708,8 @@
           <Property Name="EmpCreatedDt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EmpCreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="LookupEmployeeType" Relationship="Self.FK_Employee_LookupEmployeeType" FromRole="Employee" ToRole="LookupEmployeeType" />
+          <Property Name="BaseBranchID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="EmployeeType" Relationship="DevTestModel.FK_Employee_LookupEmployeeType1" FromRole="Employee" ToRole="EmployeeType" />
         </EntityType>
         <EntityType Name="LookupBranchRegion">
           <Key>
@@ -674,7 +868,232 @@
             <Parameter Name="USER_LNAME" Mode="In" Type="String" />
             <Parameter Name="USER_ROLE_ID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="BranchTreatmentCosts" EntityType="DevTestModel.BranchTreatmentCost" />
+          <EntitySet Name="CustomerMemberships" EntityType="DevTestModel.CustomerMembership" />
+          <EntitySet Name="EmployeeTypes" EntityType="DevTestModel.EmployeeType" />
+          <EntitySet Name="GiftCerts" EntityType="DevTestModel.GiftCert" />
+          <EntitySet Name="LookupCountries" EntityType="DevTestModel.LookupCountry" />
+          <EntitySet Name="LookupStates" EntityType="DevTestModel.LookupState" />
+          <EntitySet Name="Memberships" EntityType="DevTestModel.Membership" />
+          <EntitySet Name="Orders" EntityType="DevTestModel.Order" />
+          <EntitySet Name="Packages" EntityType="DevTestModel.Package" />
+          <EntitySet Name="Taxes" EntityType="DevTestModel.Tax" />
+          <EntitySet Name="Treatments" EntityType="DevTestModel.Treatment" />
+          <EntitySet Name="Vouchers" EntityType="DevTestModel.Voucher" />
+          <EntitySet Name="XrefPackageTreatments" EntityType="DevTestModel.XrefPackageTreatment" />
+          <AssociationSet Name="FK_Employee_LookupEmployeeType1" Association="DevTestModel.FK_Employee_LookupEmployeeType1">
+            <End Role="EmployeeType" EntitySet="EmployeeTypes" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LookupState_LookupCountry" Association="DevTestModel.FK_LookupState_LookupCountry">
+            <End Role="LookupCountry" EntitySet="LookupCountries" />
+            <End Role="LookupState" EntitySet="LookupStates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_XrefPackageTreatment_Package" Association="DevTestModel.FK_XrefPackageTreatment_Package">
+            <End Role="Package" EntitySet="Packages" />
+            <End Role="XrefPackageTreatment" EntitySet="XrefPackageTreatments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_XrefPackageTreatment_Treatment" Association="DevTestModel.FK_XrefPackageTreatment_Treatment">
+            <End Role="Treatment" EntitySet="Treatments" />
+            <End Role="XrefPackageTreatment" EntitySet="XrefPackageTreatments" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="BranchTreatmentCost">
+          <Key>
+            <PropertyRef Name="BranchTreatmentCostID" />
+          </Key>
+          <Property Name="BranchTreatmentCostID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BranchID" Type="Int64" Nullable="false" />
+          <Property Name="CompanyID" Type="Int64" Nullable="false" />
+          <Property Name="PackageTreatmentXrefID" Type="Int64" Nullable="false" />
+          <Property Name="TreatmentCost" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="Comments" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CustomerMembership">
+          <Key>
+            <PropertyRef Name="CustomerMembershipID" />
+          </Key>
+          <Property Name="CustomerMembershipID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerID" Type="Int64" Nullable="false" />
+          <Property Name="CreatedAtBranchID" Type="Int64" Nullable="false" />
+          <Property Name="MembershipID" Type="Int64" Nullable="false" />
+          <Property Name="IsMembershipActive" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="MembershipStartDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="EmployeeType">
+          <Key>
+            <PropertyRef Name="EmpTypeID" />
+          </Key>
+          <Property Name="EmpTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TypeDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employees" Relationship="DevTestModel.FK_Employee_LookupEmployeeType1" FromRole="EmployeeType" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="GiftCert">
+          <Key>
+            <PropertyRef Name="GiftCertID" />
+          </Key>
+          <Property Name="GiftCertID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyID" Type="Int64" Nullable="false" />
+          <Property Name="IssuedAtBranchID" Type="Int64" Nullable="false" />
+          <Property Name="GiftCertCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GiftCertDesc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GiftCertStartDt" Type="DateTime" Precision="3" />
+          <Property Name="GiftCertEndDt" Type="DateTime" Precision="3" />
+          <Property Name="IsGiftCertActive" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="GiftCertAmount" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="LookupCountry">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CountryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LookupStates" Relationship="DevTestModel.FK_LookupState_LookupCountry" FromRole="LookupCountry" ToRole="LookupState" />
+        </EntityType>
+        <EntityType Name="LookupState">
+          <Key>
+            <PropertyRef Name="StateID" />
+          </Key>
+          <Property Name="StateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryID" Type="Int32" Nullable="false" />
+          <Property Name="StateCode" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="StateName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LookupCountry" Relationship="DevTestModel.FK_LookupState_LookupCountry" FromRole="LookupState" ToRole="LookupCountry" />
+        </EntityType>
+        <EntityType Name="Membership">
+          <Key>
+            <PropertyRef Name="MembershipID" />
+          </Key>
+          <Property Name="MembershipID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyID" Type="Int64" Nullable="false" />
+          <Property Name="MembershipName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MembershipDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MembershipCost" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="MembershipDurationMonths" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyID" Type="Int64" Nullable="false" />
+          <Property Name="BranchID" Type="Int64" Nullable="false" />
+          <Property Name="CustomerID" Type="Int64" Nullable="false" />
+          <Property Name="OrderDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OrderDiscount" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="OrderGrossAmt" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="OrderNetAmt" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="OrderCreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Package">
+          <Key>
+            <PropertyRef Name="PackageID" />
+          </Key>
+          <Property Name="PackageID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyID" Type="Int64" Nullable="false" />
+          <Property Name="PackageName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PackageDesc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="XrefPackageTreatments" Relationship="DevTestModel.FK_XrefPackageTreatment_Package" FromRole="Package" ToRole="XrefPackageTreatment" />
+        </EntityType>
+        <EntityType Name="Tax">
+          <Key>
+            <PropertyRef Name="TaxID" />
+          </Key>
+          <Property Name="TaxID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyID" Type="Int64" Nullable="false" />
+          <Property Name="BranchID" Type="Int64" Nullable="false" />
+          <Property Name="TaxName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="TaxPercentage" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="TaxDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Treatment">
+          <Key>
+            <PropertyRef Name="TreatmentID" />
+          </Key>
+          <Property Name="TreatmentID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyID" Type="Int64" Nullable="false" />
+          <Property Name="TreatmentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TreatmentDesc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="XrefPackageTreatments" Relationship="DevTestModel.FK_XrefPackageTreatment_Treatment" FromRole="Treatment" ToRole="XrefPackageTreatment" />
+        </EntityType>
+        <EntityType Name="Voucher">
+          <Key>
+            <PropertyRef Name="VoucherID" />
+          </Key>
+          <Property Name="VoucherID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyID" Type="Int64" Nullable="false" />
+          <Property Name="VoucherCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VoucherDesc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="VoucherStartDt" Type="DateTime" Precision="3" />
+          <Property Name="VoucherEndDt" Type="DateTime" Precision="3" />
+          <Property Name="IsVoucherActive" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="VoucherAmount" Type="Decimal" Precision="8" Scale="2" />
+        </EntityType>
+        <EntityType Name="XrefPackageTreatment">
+          <Key>
+            <PropertyRef Name="PackageTreatmentXrefID" />
+          </Key>
+          <Property Name="PackageTreatmentXrefID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PackageID" Type="Int64" Nullable="false" />
+          <Property Name="TreatmentID" Type="Int64" Nullable="false" />
+          <Property Name="CompanyID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Package" Relationship="DevTestModel.FK_XrefPackageTreatment_Package" FromRole="XrefPackageTreatment" ToRole="Package" />
+          <NavigationProperty Name="Treatment" Relationship="DevTestModel.FK_XrefPackageTreatment_Treatment" FromRole="XrefPackageTreatment" ToRole="Treatment" />
+        </EntityType>
+        <Association Name="FK_Employee_LookupEmployeeType1">
+          <End Type="DevTestModel.EmployeeType" Role="EmployeeType" Multiplicity="0..1" />
+          <End Type="DevTestModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeType">
+              <PropertyRef Name="EmpTypeID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="EmpTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LookupState_LookupCountry">
+          <End Type="DevTestModel.LookupCountry" Role="LookupCountry" Multiplicity="1" />
+          <End Type="DevTestModel.LookupState" Role="LookupState" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LookupCountry">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="LookupState">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_XrefPackageTreatment_Package">
+          <End Type="DevTestModel.Package" Role="Package" Multiplicity="1" />
+          <End Type="DevTestModel.XrefPackageTreatment" Role="XrefPackageTreatment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Package">
+              <PropertyRef Name="PackageID" />
+            </Principal>
+            <Dependent Role="XrefPackageTreatment">
+              <PropertyRef Name="PackageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_XrefPackageTreatment_Treatment">
+          <End Type="DevTestModel.Treatment" Role="Treatment" Multiplicity="1" />
+          <End Type="DevTestModel.XrefPackageTreatment" Role="XrefPackageTreatment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Treatment">
+              <PropertyRef Name="TreatmentID" />
+            </Principal>
+            <Dependent Role="XrefPackageTreatment">
+              <PropertyRef Name="TreatmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -819,9 +1238,9 @@
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="DevTestModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="BaseBranchID" ColumnName="BaseBranchID" />
                 <ScalarProperty Name="EmpID" ColumnName="EmpID" />
                 <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
-                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
                 <ScalarProperty Name="EmpCode" ColumnName="EmpCode" />
                 <ScalarProperty Name="EmpFName" ColumnName="EmpFName" />
                 <ScalarProperty Name="EmpLName" ColumnName="EmpLName" />
@@ -853,15 +1272,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="LookupEmployeeTypes">
-            <EntityTypeMapping TypeName="DevTestModel.LookupEmployeeType">
-              <MappingFragment StoreEntitySet="LookupEmployeeType">
-                <ScalarProperty Name="EmpTypeID" ColumnName="EmpTypeID" />
-                <ScalarProperty Name="EmpType" ColumnName="EmpType" />
-                <ScalarProperty Name="TypeDesc" ColumnName="TypeDesc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <AssociationSetMapping Name="AspNetUserRoles" TypeName="DevTestModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
             <EndProperty Name="AspNetRoles">
               <ScalarProperty Name="Id" ColumnName="RoleId" />
@@ -872,6 +1282,160 @@
           </AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="ADD_NEW_ROLE" FunctionName="DevTestModel.Store.ADD_NEW_ROLE" />
           <FunctionImportMapping FunctionImportName="ADD_NEW_USER" FunctionName="DevTestModel.Store.ADD_NEW_USER" />
+          <EntitySetMapping Name="BranchTreatmentCosts">
+            <EntityTypeMapping TypeName="DevTestModel.BranchTreatmentCost">
+              <MappingFragment StoreEntitySet="BranchTreatmentCost">
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="TreatmentCost" ColumnName="TreatmentCost" />
+                <ScalarProperty Name="PackageTreatmentXrefID" ColumnName="PackageTreatmentXrefID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+                <ScalarProperty Name="BranchTreatmentCostID" ColumnName="BranchTreatmentCostID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerMemberships">
+            <EntityTypeMapping TypeName="DevTestModel.CustomerMembership">
+              <MappingFragment StoreEntitySet="CustomerMembership">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="MembershipStartDt" ColumnName="MembershipStartDt" />
+                <ScalarProperty Name="IsMembershipActive" ColumnName="IsMembershipActive" />
+                <ScalarProperty Name="MembershipID" ColumnName="MembershipID" />
+                <ScalarProperty Name="CreatedAtBranchID" ColumnName="CreatedAtBranchID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="CustomerMembershipID" ColumnName="CustomerMembershipID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeTypes">
+            <EntityTypeMapping TypeName="DevTestModel.EmployeeType">
+              <MappingFragment StoreEntitySet="EmployeeType">
+                <ScalarProperty Name="TypeDesc" ColumnName="TypeDesc" />
+                <ScalarProperty Name="EmpType" ColumnName="EmpType" />
+                <ScalarProperty Name="EmpTypeID" ColumnName="EmpTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GiftCerts">
+            <EntityTypeMapping TypeName="DevTestModel.GiftCert">
+              <MappingFragment StoreEntitySet="GiftCert">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="GiftCertAmount" ColumnName="GiftCertAmount" />
+                <ScalarProperty Name="IsGiftCertActive" ColumnName="IsGiftCertActive" />
+                <ScalarProperty Name="GiftCertEndDt" ColumnName="GiftCertEndDt" />
+                <ScalarProperty Name="GiftCertStartDt" ColumnName="GiftCertStartDt" />
+                <ScalarProperty Name="GiftCertDesc" ColumnName="GiftCertDesc" />
+                <ScalarProperty Name="GiftCertCode" ColumnName="GiftCertCode" />
+                <ScalarProperty Name="IssuedAtBranchID" ColumnName="IssuedAtBranchID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="GiftCertID" ColumnName="GiftCertID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LookupCountries">
+            <EntityTypeMapping TypeName="DevTestModel.LookupCountry">
+              <MappingFragment StoreEntitySet="LookupCountry">
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LookupStates">
+            <EntityTypeMapping TypeName="DevTestModel.LookupState">
+              <MappingFragment StoreEntitySet="LookupState">
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Memberships">
+            <EntityTypeMapping TypeName="DevTestModel.Membership">
+              <MappingFragment StoreEntitySet="Membership">
+                <ScalarProperty Name="MembershipDurationMonths" ColumnName="MembershipDurationMonths" />
+                <ScalarProperty Name="MembershipCost" ColumnName="MembershipCost" />
+                <ScalarProperty Name="MembershipDesc" ColumnName="MembershipDesc" />
+                <ScalarProperty Name="MembershipName" ColumnName="MembershipName" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="MembershipID" ColumnName="MembershipID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="DevTestModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="OrderCreatedBy" ColumnName="OrderCreatedBy" />
+                <ScalarProperty Name="OrderNetAmt" ColumnName="OrderNetAmt" />
+                <ScalarProperty Name="OrderGrossAmt" ColumnName="OrderGrossAmt" />
+                <ScalarProperty Name="OrderDiscount" ColumnName="OrderDiscount" />
+                <ScalarProperty Name="OrderDt" ColumnName="OrderDt" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Packages">
+            <EntityTypeMapping TypeName="DevTestModel.Package">
+              <MappingFragment StoreEntitySet="Package">
+                <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+                <ScalarProperty Name="PackageDesc" ColumnName="PackageDesc" />
+                <ScalarProperty Name="PackageName" ColumnName="PackageName" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="PackageID" ColumnName="PackageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Taxes">
+            <EntityTypeMapping TypeName="DevTestModel.Tax">
+              <MappingFragment StoreEntitySet="Tax">
+                <ScalarProperty Name="TaxDesc" ColumnName="TaxDesc" />
+                <ScalarProperty Name="TaxPercentage" ColumnName="TaxPercentage" />
+                <ScalarProperty Name="TaxName" ColumnName="TaxName" />
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="TaxID" ColumnName="TaxID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Treatments">
+            <EntityTypeMapping TypeName="DevTestModel.Treatment">
+              <MappingFragment StoreEntitySet="Treatment">
+                <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+                <ScalarProperty Name="TreatmentDesc" ColumnName="TreatmentDesc" />
+                <ScalarProperty Name="TreatmentName" ColumnName="TreatmentName" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="TreatmentID" ColumnName="TreatmentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vouchers">
+            <EntityTypeMapping TypeName="DevTestModel.Voucher">
+              <MappingFragment StoreEntitySet="Voucher">
+                <ScalarProperty Name="VoucherAmount" ColumnName="VoucherAmount" />
+                <ScalarProperty Name="IsVoucherActive" ColumnName="IsVoucherActive" />
+                <ScalarProperty Name="VoucherEndDt" ColumnName="VoucherEndDt" />
+                <ScalarProperty Name="VoucherStartDt" ColumnName="VoucherStartDt" />
+                <ScalarProperty Name="VoucherDesc" ColumnName="VoucherDesc" />
+                <ScalarProperty Name="VoucherCode" ColumnName="VoucherCode" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="VoucherID" ColumnName="VoucherID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="XrefPackageTreatments">
+            <EntityTypeMapping TypeName="DevTestModel.XrefPackageTreatment">
+              <MappingFragment StoreEntitySet="XrefPackageTreatment">
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="TreatmentID" ColumnName="TreatmentID" />
+                <ScalarProperty Name="PackageID" ColumnName="PackageID" />
+                <ScalarProperty Name="PackageTreatmentXrefID" ColumnName="PackageTreatmentXrefID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

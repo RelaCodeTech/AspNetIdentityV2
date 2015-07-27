@@ -27,7 +27,9 @@ namespace SpaCloud.EF.Models
         public string IsActive { get; set; }
         public System.DateTime EmpCreatedDt { get; set; }
         public string EmpCreatedBy { get; set; }
+        public long BaseBranchID { get; set; }
     
         public virtual LookupEmployeeType LookupEmployeeType { get; set; }
+        public virtual EmployeeType EmployeeType { get; set; }
     }
 }
