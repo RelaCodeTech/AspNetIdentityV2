@@ -17,6 +17,9 @@ namespace AspNetIdentityV2.Controllers
         // GET: /Role/
         public ActionResult Index()
         {
+            var roleManager2 = new RoleManager<ApplicationRole>(new RoleStore<ApplicationRole>(new ApplicationDbContext()));
+            var allRoles2 = roleManager2.Roles;
+
             var context = new ApplicationDbContext();
             var allRoles = context.Roles.ToList();
 
@@ -29,7 +32,7 @@ namespace AspNetIdentityV2.Controllers
 
             ViewData["Roles"] = ReadableRoles;
 
-            return View();
+            return View(allRoles2);
         }
 
         public ActionResult Create()
@@ -38,11 +41,14 @@ namespace AspNetIdentityV2.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(string roleName)
+        public ActionResult Create(string roleName, string roleDesc)
         {
 
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
-            var roleresult = roleManager.Create(new IdentityRole(roleName));
+            //var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
+            //var roleresult = roleManager.Create(new IdentityRole(roleName));
+
+            var roleManager2 = new RoleManager<ApplicationRole>(new RoleStore<ApplicationRole>(new ApplicationDbContext()));
+            var roleresult2 = roleManager2.Create(new ApplicationRole(roleName, roleDesc));
 
             return RedirectToAction("Index");
         }

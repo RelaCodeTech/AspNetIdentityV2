@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
+using SpaCloud.Models.ViewModel;
 
 namespace SpaCloud.Models.DAL
 {
@@ -19,10 +20,15 @@ namespace SpaCloud.Models.DAL
             this._con = new SqlConnection(ConfigurationManager.ConnectionStrings[DbConnStringName].ToString());
         }
 
-        public IEnumerable<XrefPackageTreatment> GetAllPkgTrtmnts(Int64 companyID)
+        public PackageTreatmentViewModel GetAllPkgTrtmnts(Int64 companyID)
         {
+            StringBuilder sbAllQueries = new StringBuilder();
+            PackageTreatmentViewModel ViewModelData = new PackageTreatmentViewModel();
 
-            string query = @"select xref.*, 
+            string qryAllPackages = @"select * from [dbo].[Package] where CompanyID = " + companyID;
+            string qryAllTreatments = @"select * from [dbo].[Treatment] where CompanyID = " + companyID;
+
+            string qryAllMappingData = @"select xref.*, 
                                     pkg.PackageID, pkg.PackageName, 
                                     trmt.TreatmentID, trmt.TreatmentName
                                 from 
@@ -38,20 +44,36 @@ namespace SpaCloud.Models.DAL
                                     and
                                     xref.CompanyID = " + companyID + " order by pkg.PackageID, pkg.PackageName";
 
-            var resultList = this._con.Query<XrefPackageTreatment, Package, Treatment, XrefPackageTreatment>(
-                                query, (xref, pkg, trtmnt) =>
-                                {
-                                    xref.Package = pkg;
-                                    xref.Treatment = trtmnt;
-                                    return xref;
-                                },
-                                 splitOn: "PackageID,TreatmentID"
-                                 ).AsQueryable();
-            return resultList;
+            sbAllQueries.Append(qryAllPackages);
+            sbAllQueries.Append(qryAllTreatments);
+            sbAllQueries.Append(qryAllMappingData);
 
+            var FuncQry2ReadAllMappings = new Func<XrefPackageTreatment, Package, Treatment, XrefPackageTreatment>(
+                    (xref, pkg, trtmnt) =>
+                    {
+                        xref.Package = pkg;
+                        xref.Treatment = trtmnt;
+                        return xref;
+                    });
 
-            //var result = this._con.Query<XrefPackageTreatment>(query);
-            //return result;
+            using (var multi = this._con.QueryMultiple(sbAllQueries.ToString()))
+            {
+                ViewModelData.Packages = multi.Read<Package>().ToList();
+                ViewModelData.Treatments = multi.Read<Treatment>().ToList();
+                ViewModelData.PkgTrtmntMappings = multi.Read(FuncQry2ReadAllMappings, "PackageID,TreatmentID").ToList();
+            }
+
+            //var resultList = this._con.Query<XrefPackageTreatment, Package, Treatment, XrefPackageTreatment>(
+            //                    qryAllMappingData, (xref, pkg, trtmnt) =>
+            //                    {
+            //                        xref.Package = pkg;
+            //                        xref.Treatment = trtmnt;
+            //                        return xref;
+            //                    },
+            //                     splitOn: "PackageID,TreatmentID"
+            //                     ).AsQueryable();
+            return ViewModelData;
+
         }
 
         private bool disposed = false;

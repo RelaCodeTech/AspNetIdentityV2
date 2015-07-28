@@ -27,6 +27,7 @@ namespace AspNetIdentityV2.Controllers
         }
 
         public UserManager<ApplicationUser> UserManager { get; private set; }
+        //public RoleManager<ApplicationRole> RoleManager { get; private set; }
 
         //
         // GET: /Account/Login

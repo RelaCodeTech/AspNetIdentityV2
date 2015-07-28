@@ -12,11 +12,14 @@ namespace AspNetIdentityV2.Controllers.BusinessSetup
     public class BranchController : Controller
     {
         private IBranchRepository _branchRepository;
+        private IEmployeeRepository _employeeRepository;
+
         private string _dbConnStringName = AspNetIdentityV2.Utilities.AppReadOnlyVar.DbConnString;
 
         public BranchController()
         {
             this._branchRepository = new BranchRepository(this._dbConnStringName);
+            this._employeeRepository = new EmployeeRepository(this._dbConnStringName);
         }
 
         //
@@ -34,6 +37,17 @@ namespace AspNetIdentityV2.Controllers.BusinessSetup
         {
             return View();
         }
+
+        // GET: /Branch/Manage/5
+        public ActionResult Manage(int id)
+        {
+            var account = new AccountController();
+            var currentUser = account.UserManager.FindById(User.Identity.GetUserId());
+            return View(this._employeeRepository.GetEmployees(currentUser.CompanyID));
+
+            //return View();
+        }
+
 
         //
         // GET: /Branch/Create

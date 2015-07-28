@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 
 namespace AspNetIdentityV2.Controllers.BusinessSetup
 {
+    [Authorize]
     public class PkgTrtmntController : Controller
     {
         private IPkgTrtmntRepository _pkgTrtmntRepository;

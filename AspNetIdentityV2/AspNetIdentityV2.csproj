@@ -390,6 +390,8 @@
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Shared\_CreateAppointment.cshtml" />
     <Content Include="Views\PkgTrtmnt\Index.cshtml" />
+    <Content Include="Views\Branch\Manage.cshtml" />
+    <Content Include="Views\Shared\_EmployeeIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

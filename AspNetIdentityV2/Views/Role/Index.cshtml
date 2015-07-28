@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IQueryable<AspNetIdentityV2.Models.ApplicationRole>
+
+@{
     ViewBag.Title = "Roles Index";
 }
 @Html.Partial("_MainMenu", "BusinessSetup")
@@ -17,21 +19,25 @@
 
 <br /><br />
 
-<table>
-    <tr>
-        @*<th>ID</th>*@
-        <th>Name</th>
+<table class="table table-condensed table-striped table-bordered">
+    <tr class="info">
+        <th>Role Name</th>
+        <th>Role Description</th>
         <th>Action</th>
     </tr>
 
-    @foreach (var role in ViewData["Roles"] as Dictionary<string, string>)
+
+    @foreach (var item in Model)
     {
         <tr>
-            @*<td>@role.Key</td>*@
-            <td>@role.Value</td>
-            <td>@Html.ActionLink("Edit", "Edit", new { id = @role.Key }) | 
-                @Html.ActionLink("Delete", "Delete", new { id = @role.Key })</td>
+            <td>@item.Name</td>
+            <td>@item.RoleDesc</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = @item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = @item.Id })
+            </td>
         </tr>
+
     }
 
 </table>

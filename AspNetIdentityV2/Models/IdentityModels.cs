@@ -56,6 +56,17 @@ namespace AspNetIdentityV2.Models
     /// </summary>
     public class ApplicationRole : IdentityRole
     {
+        public ApplicationRole()
+        {
+
+        }
+
+        public ApplicationRole(string RoleName, string RoleDesc)
+        {
+            base.Name = RoleName;
+            this.RoleDesc = RoleDesc;
+        }
+
         /// <summary>
         /// Role Description
         /// </summary>

@@ -7,7 +7,7 @@
 @Html.Partial("_MainSubMenuBusinessSetup", "Branches")
 
 
-<h4>Branch List</h4>
+<h4>All Branches</h4>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -110,8 +110,7 @@
             @Html.DisplayFor(modelItem => item.BranchCreatedDt)
         </td>*@
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.BranchID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.BranchID }) |
+            @Html.ActionLink("Manage", "Manage", new { id = item.BranchID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.BranchID })
         </td>
     </tr>
