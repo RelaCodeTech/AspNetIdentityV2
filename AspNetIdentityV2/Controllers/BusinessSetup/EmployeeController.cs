@@ -24,7 +24,7 @@ namespace AspNetIdentityV2.Controllers.BusinessSetup
         {
             var account = new AccountController();
             var currentUser = account.UserManager.FindById(User.Identity.GetUserId());
-            return View(this._employeeRepository.GetEmployees(currentUser.CompanyID));
+            return View(this._employeeRepository.GetAllEmployees(currentUser.CompanyID));
         }
 
         //

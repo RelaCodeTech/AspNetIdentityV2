@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace SpaCloud.Models.DbModel
 {
-    public class XrefPackageTreatment
+    public class XrefServiceTreatment
     {
-        public long PackageTreatmentXrefID { get; set; }
-        public long PackageID { get; set; }
+        public long ServiceTreatmentXrefID { get; set; }
+        public long ServiceID { get; set; }
         public long TreatmentID { get; set; }
         public long CompanyID { get; set; }
 
-        public virtual Package Package { get; set; }
+        public virtual Service Service { get; set; }
         public virtual Treatment Treatment { get; set; }
 
-        //public IList<Package> Packages { get; set; }
+        //public IList<Service> Services { get; set; }
         //public IList<Treatment> Treatments { get; set; }
 
     }

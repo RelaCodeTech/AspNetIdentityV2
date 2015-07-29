@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace SpaCloud.Models.ViewModel
 {
-    public class PackageTreatmentViewModel
+    public class ServiceTreatmentViewModel
     {
-        public IEnumerable<XrefPackageTreatment> PkgTrtmntMappings = new List<XrefPackageTreatment>();
-        public List<Package> Packages = new List<Package>();
+        public IEnumerable<XrefServiceTreatment> SvcTrtmntMappings = new List<XrefServiceTreatment>();
+        public List<Service> Services = new List<Service>();
         public List<Treatment> Treatments = new List<Treatment>();
     }
 }

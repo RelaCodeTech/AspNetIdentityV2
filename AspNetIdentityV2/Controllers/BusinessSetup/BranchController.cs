@@ -39,11 +39,11 @@ namespace AspNetIdentityV2.Controllers.BusinessSetup
         }
 
         // GET: /Branch/Manage/5
-        public ActionResult Manage(int id)
+        public ActionResult Manage(long id)
         {
             var account = new AccountController();
             var currentUser = account.UserManager.FindById(User.Identity.GetUserId());
-            return View(this._employeeRepository.GetEmployees(currentUser.CompanyID));
+            return View(this._employeeRepository.GetBranchEmployees(currentUser.CompanyID, id));
 
             //return View();
         }

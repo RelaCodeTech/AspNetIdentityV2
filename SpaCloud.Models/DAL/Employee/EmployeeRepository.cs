@@ -19,9 +19,16 @@ namespace SpaCloud.Models.DAL
             this._con = new SqlConnection(ConfigurationManager.ConnectionStrings[DbConnStringName].ToString());
         }
 
-        public IEnumerable<Employee> GetEmployees(Int64 companyID)
+        public IEnumerable<Employee> GetAllEmployees(Int64 companyID)
         {
-            string query = "select * from Employee where CompanyID = " + companyID;
+            string query = String.Format("select * from [dbo].[Employee] where CompanyID = {0}", companyID);
+            var result = this._con.Query<Employee>(query);
+            return result;
+        }
+
+        public IEnumerable<Employee> GetBranchEmployees(Int64 companyID, Int64 branchID)
+        {
+            string query = String.Format("select * from [dbo].[Employee] where CompanyID = {0} and BaseBranchID = {1}", companyID, branchID);
             var result = this._con.Query<Employee>(query);
             return result;
         }

@@ -16,11 +16,11 @@ using System.Data.SqlClient;
 
 namespace WinForm
 {
-    public partial class PackageTreatments : Form
+    public partial class ServiceTreatments : Form
     {
         private SqlConnection _con;
 
-        public PackageTreatments()
+        public ServiceTreatments()
         {
             InitializeComponent();
             string _connectionString = "data source=Sandeep;initial catalog=DevTest;integrated security=true";
@@ -30,57 +30,57 @@ namespace WinForm
         private void button1_Click(object sender, EventArgs e)
         {
             string queryMappingData = @"select xref.*, 
-                                    pkg.PackageID, pkg.PackageName, 
+                                    pkg.ServiceID, pkg.ServiceName, 
                                     trmt.TreatmentID, trmt.TreatmentName
                                 from 
-                                    [dbo].[XrefPackageTreatment] as xref,
+                                    [dbo].[XrefServiceTreatment] as xref,
                                     [dbo].[Treatment] as trmt,
-                                    [dbo].[Package] as pkg
+                                    [dbo].[Service] as pkg
 
                                 where 
 
                                     xref.TreatmentID = trmt.TreatmentID
                                     and
-                                    xref.PackageID = pkg.PackageID
+                                    xref.ServiceID = pkg.ServiceID
                                     and
-                                    xref.CompanyID = 1 order by pkg.PackageID, pkg.PackageName";
+                                    xref.CompanyID = 1 order by pkg.ServiceID, pkg.ServiceName";
 
 
-            string qryGetPkgAndTreatments = @"select * from [dbo].[Package] where CompanyID = 1
+            string qryGetPkgAndTreatments = @"select * from [dbo].[Service] where CompanyID = 1
                                               select * from [dbo].[Treatment] where CompanyID = 1 " + queryMappingData;
 
 
-            var FuncQryReadAllMappings = new Func<XrefPackageTreatment, Package, Treatment, XrefPackageTreatment>(
+            var FuncQryReadAllMappings = new Func<XrefServiceTreatment, Service, Treatment, XrefServiceTreatment>(
                                 (xref, pkg, trtmnt) =>
                                 {
-                                    xref.Package = pkg;
+                                    xref.Service = pkg;
                                     xref.Treatment = trtmnt;
                                     return xref;
                                 });
 
-            PackageTreatmentViewModel ptVM = new PackageTreatmentViewModel();
+            ServiceTreatmentViewModel ptVM = new ServiceTreatmentViewModel();
 
             using (var multi = this._con.QueryMultiple(qryGetPkgAndTreatments))
             {
-                ptVM.Packages = multi.Read<Package>().ToList();
+                ptVM.Services = multi.Read<Service>().ToList();
                 ptVM.Treatments = multi.Read<Treatment>().ToList();
-                ptVM.PkgTrtmntMappings = multi.Read(FuncQryReadAllMappings, "PackageID,TreatmentID").ToList();
+                ptVM.SvcTrtmntMappings = multi.Read(FuncQryReadAllMappings, "ServiceID,TreatmentID").ToList();
             }
 
-            //var resultList = this._con.Query<XrefPackageTreatment, Package, Treatment, XrefPackageTreatment>(
+            //var resultList = this._con.Query<XrefServiceTreatment, Service, Treatment, XrefServiceTreatment>(
             //                    queryMappingData, (xref, pkg, trtmnt) =>
             //                    {
-            //                        xref.Package = pkg;
+            //                        xref.Service = pkg;
             //                        xref.Treatment = trtmnt;
             //                        return xref;
             //                    },
-            //                     splitOn: "PackageID,TreatmentID"
+            //                     splitOn: "ServiceID,TreatmentID"
             //                     ).AsQueryable();
             this._con.Close();
             
 
-            this.dgMappedData.DataSource = ptVM.PkgTrtmntMappings;
-            this.dgPackages.DataSource = ptVM.Packages;
+            this.dgMappedData.DataSource = ptVM.SvcTrtmntMappings;
+            this.dgServices.DataSource = ptVM.Services;
             this.dgTreatments.DataSource = ptVM.Treatments;
 
         }

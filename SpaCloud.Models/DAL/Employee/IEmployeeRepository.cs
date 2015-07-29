@@ -9,7 +9,8 @@ namespace SpaCloud.Models.DAL
 {
     public interface IEmployeeRepository : IDisposable
     {
-        IEnumerable<Employee> GetEmployees(Int64 companyID);
+        IEnumerable<Employee> GetAllEmployees(Int64 companyID);
+        IEnumerable<Employee> GetBranchEmployees(Int64 companyID, Int64 branchID);
         void CreateEmployee(Employee NewEmployee);
     }
 }

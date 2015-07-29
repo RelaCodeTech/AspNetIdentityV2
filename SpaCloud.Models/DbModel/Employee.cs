@@ -10,7 +10,7 @@ namespace SpaCloud.Models.DbModel
     {
         public Int64 EmpID { get; set; }
         public Int64 CompanyID { get; set; }
-        public Int64 BranchID { get; set; }
+        public Int64 BaseBranchID { get; set; }
         public string EmpCode { get; set; }
         public string EmpFName { get; set; }
         public string EmpLName { get; set; }

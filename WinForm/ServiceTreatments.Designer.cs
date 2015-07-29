@@ -1,6 +1,6 @@
 ﻿namespace WinForm
 {
-    partial class PackageTreatments
+    partial class ServiceTreatments
     {
         /// <summary>
         /// Required designer variable.
@@ -30,13 +30,13 @@
         {
             this.button1 = new System.Windows.Forms.Button();
             this.dgMappedData = new System.Windows.Forms.DataGridView();
-            this.dgPackages = new System.Windows.Forms.DataGridView();
+            this.dgServices = new System.Windows.Forms.DataGridView();
             this.dgTreatments = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgMappedData)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgPackages)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgServices)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgTreatments)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,13 +58,13 @@
             this.dgMappedData.Size = new System.Drawing.Size(328, 335);
             this.dgMappedData.TabIndex = 1;
             // 
-            // dgPackages
+            // dgServices
             // 
-            this.dgPackages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgPackages.Location = new System.Drawing.Point(358, 35);
-            this.dgPackages.Name = "dgPackages";
-            this.dgPackages.Size = new System.Drawing.Size(246, 335);
-            this.dgPackages.TabIndex = 2;
+            this.dgServices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgServices.Location = new System.Drawing.Point(358, 35);
+            this.dgServices.Name = "dgServices";
+            this.dgServices.Size = new System.Drawing.Size(246, 335);
+            this.dgServices.TabIndex = 2;
             // 
             // dgTreatments
             // 
@@ -82,7 +82,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(171, 13);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Package and Treatment Mappings";
+            this.label1.Text = "Service and Treatment Mappings";
             // 
             // label2
             // 
@@ -91,7 +91,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(55, 13);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Packages";
+            this.label2.Text = "Services";
             // 
             // label3
             // 
@@ -102,7 +102,7 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "Treatments";
             // 
-            // PackageTreatments
+            // ServiceTreatments
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -111,13 +111,13 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgTreatments);
-            this.Controls.Add(this.dgPackages);
+            this.Controls.Add(this.dgServices);
             this.Controls.Add(this.dgMappedData);
             this.Controls.Add(this.button1);
-            this.Name = "PackageTreatments";
-            this.Text = "PackageTreatments";
+            this.Name = "ServiceTreatments";
+            this.Text = "ServiceTreatments";
             ((System.ComponentModel.ISupportInitialize)(this.dgMappedData)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgPackages)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgServices)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgTreatments)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -128,7 +128,7 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dgMappedData;
-        private System.Windows.Forms.DataGridView dgPackages;
+        private System.Windows.Forms.DataGridView dgServices;
         private System.Windows.Forms.DataGridView dgTreatments;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;

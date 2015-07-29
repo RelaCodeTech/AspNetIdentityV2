@@ -20,7 +20,7 @@ namespace WinForm
 
         private void button1_Click(object sender, EventArgs e)
         {
-            PackageTreatments FormPkgTrtmnt = new PackageTreatments();
+            ServiceTreatments FormPkgTrtmnt = new ServiceTreatments();
             FormPkgTrtmnt.MdiParent = this;
             FormPkgTrtmnt.Show();
         }
