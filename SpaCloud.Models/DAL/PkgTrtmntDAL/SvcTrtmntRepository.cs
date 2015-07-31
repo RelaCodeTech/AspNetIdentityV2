@@ -92,6 +92,37 @@ namespace SpaCloud.Models.DAL
         }
 
         /// <summary>
+        /// Add new treatment and its reqd products
+        /// </summary>
+        /// <param name="companyID"></param>
+        /// <param name="NewCreatedTreatment"></param>
+        public void AddNewTreatment(Int64 companyID, InvntryRqdFrTrtmntViewModel NewCreatedTreatment)
+        {
+            // newTrtmntID = newly created treatment id
+            long newTrtmntID = this._con.Insert<long>(new Treatment
+            {
+                CompanyID = companyID,
+                TreatmentName = NewCreatedTreatment.NewTreatment.TreatmentName,
+                TreatmentDesc = NewCreatedTreatment.NewTreatment.TreatmentDesc,
+                TreatmentDuration = NewCreatedTreatment.NewTreatment.TreatmentDuration
+            });
+
+            //filling in new treatment id
+            foreach (var invtryRqd in NewCreatedTreatment.ListOfInvntryRqdFrTreatment)
+            {
+                invtryRqd.TreatmentID = newTrtmntID;
+                //this._con.Insert(invtryRqd);  //using dapper.simpleCRUD
+            }
+
+            //using dapper.net
+            string qryInsertListIntoInventoryRqdForTreatment = @"insert into [dbo].[InventoryRqdForTreatment] values (@TreatmentID, @ProductID, @QtyUsed)";
+            
+            //insert List using dapper.net
+            this._con.Execute(qryInsertListIntoInventoryRqdForTreatment, NewCreatedTreatment.ListOfInvntryRqdFrTreatment);
+
+        }
+
+        /// <summary>
         /// Get Service by id
         /// </summary>
         /// <param name="SvcId"></param>
@@ -134,11 +165,24 @@ namespace SpaCloud.Models.DAL
         }
 
         /// <summary>
+        /// delete a treatment
+        /// </summary>
+        /// <param name="id"></param>
+        public void DeleteTreatment(int id)
+        {
+            //delete dependant table data - InventoryRqdForTreatment
+            this._con.DeleteList<InventoryRqdForTreatment>(" where TreatmentID = " + id);
+
+            //delete Treatment
+            this._con.Delete<Treatment>(id);
+        }
+
+        /// <summary>
         /// gets list of all proudcts with basic details
         /// </summary>
         /// <param name="companyID"></param>
         /// <returns></returns>
-        public IEnumerable<ProductBasicDetailsViewModel> GetAllProductsWithBasicDetails(Int64 companyID)
+        public IList<ProductBasicDetailsViewModel> GetAllProductsWithBasicDetails(Int64 companyID)
         {
             string qryGetProducts = String.Format(@"select a.[ProductID]
                                           ,a.[CompanyID]
@@ -156,7 +200,7 @@ namespace SpaCloud.Models.DAL
                                           and a.[CompanyID] = {0}      
                                                     ", companyID);
 
-            return this._con.Query<ProductBasicDetailsViewModel>(qryGetProducts);
+            return (IList<ProductBasicDetailsViewModel>) this._con.Query<ProductBasicDetailsViewModel>(qryGetProducts);
 
         }
 

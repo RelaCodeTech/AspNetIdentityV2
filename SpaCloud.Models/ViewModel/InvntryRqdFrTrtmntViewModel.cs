@@ -10,7 +10,8 @@ namespace SpaCloud.Models.ViewModel
     public class InvntryRqdFrTrtmntViewModel
     {
         public Treatment NewTreatment { get; set; }
-        public IEnumerable<ProductBasicDetailsViewModel> ProductList { get; set; }
+        //public IEnumerable<ProductBasicDetailsViewModel> ProductList { get; set; }
+        public IList<ProductBasicDetailsViewModel> ProductList { get; set; }
         public IEnumerable<InventoryRqdForTreatment> ListOfInvntryRqdFrTreatment { get; set; }
     }
 }

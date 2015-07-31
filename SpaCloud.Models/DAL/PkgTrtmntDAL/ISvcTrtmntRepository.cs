@@ -16,6 +16,9 @@ namespace SpaCloud.Models.DAL
         void UpdateService(Int64 companyID, Service UpdatedService);
         void DeleteService(int id);
 
-        IEnumerable<ProductBasicDetailsViewModel> GetAllProductsWithBasicDetails(Int64 companyID);
+        IList<ProductBasicDetailsViewModel> GetAllProductsWithBasicDetails(Int64 companyID);
+
+        void AddNewTreatment(Int64 companyID, InvntryRqdFrTrtmntViewModel NewCreatedTreatment);
+        void DeleteTreatment(int id);
     }
 }

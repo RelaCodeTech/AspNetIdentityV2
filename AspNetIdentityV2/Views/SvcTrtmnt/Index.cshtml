@@ -7,11 +7,9 @@
 
 @Html.Partial("_MainMenu", "Business Settings/Services and Treatments")
 @*@Html.Partial("_MainSubMenuBusinessSetup", "Services and Treatments")*@
-<br />
 
 <h4>Manage Services and Treatments</h4>
 <hr />
-<br />
 
 <div class="row">
 
@@ -70,9 +68,26 @@
                 {
                     <tr>
                         <td>
-                            <p style="padding-left:1em;">
+                            <div class="row">
+                                <div class="col-xs-8 col-sm-8">
+                                    @item.TreatmentName (@item.TreatmentDuration mins)
+                                </div>
+                                <div class="col-xs-4 col-sm-4">
+
+                                    <button id="@item.TreatmentID" class="btn btn-default EditTreatmentLink" data-toggle="tooltip" data-placement="left" title="Edit Treatment">
+                                        <i style="color:#5e70ff;" class="glyphicon glyphicon-pencil"></i>
+                                    </button> |
+
+                                    <a style="" class="btn btn-default" href="@Url.Action("RemoveTreatment", "SvcTrtmnt", new { id = item.TreatmentID })" data-toggle="tooltip" data-placement="right" title="Delete Treatment">
+                                        <i style="color:#ff7070;" class="glyphicon glyphicon-trash"></i>
+                                    </a>
+
+                                </div>
+                            </div>
+
+                            @*<p style="padding-left:1em;">
                                 @item.TreatmentName (@item.TreatmentDuration mins) @Html.ActionLink("Remove", "RemovePkg", new { id = item.TreatmentID }) | @Html.ActionLink("Edit", "Edit", new { id = item.TreatmentID })
-                            </p>
+                            </p>*@
                         </td>
                     </tr>
                 }

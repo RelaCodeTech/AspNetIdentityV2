@@ -16,5 +16,15 @@ namespace SpaCloud.Models.ViewModel
         public string ProductCode { get; set; }
         public decimal ProductWeight { get; set; }
         public string ProductUoM { get; set; }
+
+        /// <summary>
+        /// If product is required for Svc or Trtmnt
+        /// </summary>
+        public bool CheckedStatus { get; set; }
+
+        /// <summary>
+        /// Qty reqd  for Svc or Trtmnt - if its selected
+        /// </summary>
+        public decimal QtyRqd { get; set; }
     }
 }

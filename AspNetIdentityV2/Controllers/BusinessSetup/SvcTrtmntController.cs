@@ -70,11 +70,23 @@ namespace AspNetIdentityV2.Controllers.BusinessSetup
             var account = new AccountController();
             var currentUser = account.UserManager.FindById(User.Identity.GetUserId());
 
-            //perform db operation to add svc
+            //perform db operation to delete svc
             this._svcTrtmntRepository.DeleteService(id);
 
             return RedirectToAction("Index");
         }
+
+        public ActionResult RemoveTreatment(int id)
+        {
+            var account = new AccountController();
+            var currentUser = account.UserManager.FindById(User.Identity.GetUserId());
+
+            //perform db operation to delete treatment
+            this._svcTrtmntRepository.DeleteTreatment(id);
+
+            return RedirectToAction("Index");
+        }
+
 
         /// <summary>
         /// Create new treatment
@@ -92,14 +104,35 @@ namespace AspNetIdentityV2.Controllers.BusinessSetup
             return PartialView("_CreateTreatment", objInvntryRqdFrTrtmntViewModel);
         }
 
+        /// <summary>
+        /// Post method for - create new treatment
+        /// </summary>
+        /// <param name="NewCreatedTreatment"></param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult CreateTreatment(Treatment NewTreatment)
+        public ActionResult CreateTreatment(InvntryRqdFrTrtmntViewModel NewCreatedTreatment)
         {
             var account = new AccountController();
             var currentUser = account.UserManager.FindById(User.Identity.GetUserId());
+            //NewTreatment.ListOfInvntryRqdFrTreatment = new List<InventoryRqdForTreatment>();
+            List<InventoryRqdForTreatment> ListofInventoryRqdForTreatment = new List<InventoryRqdForTreatment>();
+
+            foreach (var productRqd in NewCreatedTreatment.ProductList)
+            {
+                if (productRqd.CheckedStatus)
+                {
+                    InventoryRqdForTreatment objInventoryRqdForTreatment = new InventoryRqdForTreatment();
+                    objInventoryRqdForTreatment.ProductID = productRqd.ProductID;
+                    objInventoryRqdForTreatment.QtyUsed = productRqd.QtyRqd;
+
+                    ListofInventoryRqdForTreatment.Add(objInventoryRqdForTreatment);
+                }
+            }
+
+            NewCreatedTreatment.ListOfInvntryRqdFrTreatment = ListofInventoryRqdForTreatment;
 
             //perform db operation to add Treatment
-            //this._svcTrtmntRepository.AddNewTreatment(currentUser.CompanyID, NewService);
+            this._svcTrtmntRepository.AddNewTreatment(currentUser.CompanyID, NewCreatedTreatment);
 
             return RedirectToAction("Index");
         }
