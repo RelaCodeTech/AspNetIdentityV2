@@ -1,15 +1,69 @@
 ﻿@using AspNetIdentityV2.Utilities;
 @model String
 
-<div class="container">
-    <ul class="nav nav-tabs">
-        <li role="presentation" class="@Html.MakeActiveMenu("FullCalendar", Model)"><a href="@Url.Action("Index", "FullCalendar")"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>&nbsp;Appointments</a></li>
-        <li role="presentation" class="@Html.MakeActiveMenu("Customer", Model)"><a href="@Url.Action("Index", "Customer")"><span class="glyphicon glyphicon-king" aria-hidden="true"></span>&nbsp;Customers</a></li>
-        <li role="presentation"><a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>&nbsp;Orders</a></li>
-        <li role="presentation"><a href="#"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>&nbsp;Schedules</a></li>
-        <li role="presentation"><a href="#"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp;Inventory</a></li>
-        <li role="presentation"><a href="#"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>&nbsp;Marketing</a></li>
-        <li role="presentation"><a href="#"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>&nbsp;Reports</a></li>
-        <li role="presentation" class="@Html.MakeActiveMenu("BusinessSetup", Model)"><a href="@Url.Action("Index", "BusinessSetup")"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;Business Setup</a></li>
-    </ul>
-</div>
+<nav style="margin-top:-10px;" class="navbar navbar-customized">
+@*<nav class="navbar navbar-default">*@
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed  navbar-customized-togglebtn" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @*<a class="navbar-brand" href="#">Main Menu</a>*@
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-mainmenu-ul">
+                <li class="@Html.MakeActiveMainMenu("Appointments", Model.ToString().Split(new char[] { '/' })[0])"><a href="@Url.Action("Index", "FullCalendar")"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>&nbsp;Appointments</a></li>
+                <li class="@Html.MakeActiveMainMenu("Customers", Model.ToString().Split(new char[] { '/' })[0])"><a href="@Url.Action("Index", "Customer")"><span class="glyphicon glyphicon-king" aria-hidden="true"></span>&nbsp;Customers</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>&nbsp;Orders</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>&nbsp;Schedules</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp;Inventory</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>&nbsp;Marketing</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>&nbsp;Reports</a></li>
+                <li class="@Html.MakeActiveMainMenu("Business Settings", Model.ToString().Split(new char[] { '/' })[0]) dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;Business Settings <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="@Url.Action("List", "Company")">Company Profile</a></li>
+                        <li><a href="@Url.Action("Index", "Branch")">Branches</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="@Url.Action("Index", "User")">System Users</a></li>
+                        <li><a href="@Url.Action("Index", "Role")">Access Roles</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="@Url.Action("Index", "SvcTrtmnt")">Services and Treatmetns</a></li>
+                    </ul>
+                </li>
+            </ul>
+            @*<form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>*@
+
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container -->
+</nav>
+
+<ol style="margin-top:-10px;" class="breadcrumb">
+    <li>Home</li>
+    <li class="active">@Model.ToString().Split(new char[] { '/' })[0]</li>
+    <li class="active">@Model.ToString().Split(new char[] { '/' })[1]</li>
+</ol>
+
+@*<div class="container">
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="@Html.MakeActiveMenu("FullCalendar", Model)"><a href="@Url.Action("Index", "FullCalendar")"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>&nbsp;Appointments</a></li>
+                <li role="presentation" class="@Html.MakeActiveMenu("Customer", Model)"><a href="@Url.Action("Index", "Customer")"><span class="glyphicon glyphicon-king" aria-hidden="true"></span>&nbsp;Customers</a></li>
+                <li role="presentation"><a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>&nbsp;Orders</a></li>
+                <li role="presentation"><a href="#"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>&nbsp;Schedules</a></li>
+                <li role="presentation"><a href="#"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp;Inventory</a></li>
+                <li role="presentation"><a href="#"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>&nbsp;Marketing</a></li>
+                <li role="presentation"><a href="#"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>&nbsp;Reports</a></li>
+                <li role="presentation" class="@Html.MakeActiveMenu("BusinessSetup", Model)"><a href="@Url.Action("Index", "BusinessSetup")"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;Business Setup</a></li>
+            </ul>
+    </div>*@

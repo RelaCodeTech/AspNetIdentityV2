@@ -50,120 +50,127 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\AppointmentDiary.cs">
-      <DependentUpon>SpaDbModel.tt</DependentUpon>
+      <DependentUpon>SpaDbEf2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetRole.cs">
-      <DependentUpon>SpaDbModel.tt</DependentUpon>
+      <DependentUpon>SpaDbEf2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUser.cs">
-      <DependentUpon>SpaDbModel.tt</DependentUpon>
+      <DependentUpon>SpaDbEf2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUserClaim.cs">
-      <DependentUpon>SpaDbModel.tt</DependentUpon>
+      <DependentUpon>SpaDbEf2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUserLogin.cs">
-      <DependentUpon>SpaDbModel.tt</DependentUpon>
+      <DependentUpon>SpaDbEf2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Branch.cs">
-      <DependentUpon>SpaDbModel.tt</DependentUpon>
+      <DependentUpon>SpaDbEf2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BranchTreatmentCost.cs">
-      <DependentUpon>SpaDbModel.tt</DependentUpon>
+      <DependentUpon>SpaDbEf2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Company.cs">
-      <DependentUpon>SpaDbModel.tt</DependentUpon>
+      <DependentUpon>SpaDbEf2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs">
-      <DependentUpon>SpaDbModel.tt</DependentUpon>
+      <DependentUpon>SpaDbEf2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CustomerMembership.cs">
-      <DependentUpon>SpaDbModel.tt</DependentUpon>
+      <DependentUpon>SpaDbEf2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C__MigrationHistory.cs">
-      <DependentUpon>SpaDbModel.tt</DependentUpon>
+      <DependentUpon>SpaDbEf2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Employee.cs">
-      <DependentUpon>SpaDbModel.tt</DependentUpon>
+      <DependentUpon>SpaDbEf2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EmployeeType.cs">
-      <DependentUpon>SpaDbModel.tt</DependentUpon>
+      <DependentUpon>SpaDbEf2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GiftCert.cs">
-      <DependentUpon>SpaDbModel.tt</DependentUpon>
+      <DependentUpon>SpaDbEf2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\InventoryRqdForService.cs">
+      <DependentUpon>SpaDbEf2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\InventoryRqdForTreatment.cs">
+      <DependentUpon>SpaDbEf2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LookupBranchRegion.cs">
-      <DependentUpon>SpaDbModel.tt</DependentUpon>
+      <DependentUpon>SpaDbEf2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LookupCountry.cs">
-      <DependentUpon>SpaDbModel.tt</DependentUpon>
+      <DependentUpon>SpaDbEf2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LookupCustomerType.cs">
-      <DependentUpon>SpaDbModel.tt</DependentUpon>
+      <DependentUpon>SpaDbEf2.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LookupEmployeeType.cs">
-      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    <Compile Include="Models\LookUpProductUoM.cs">
+      <DependentUpon>SpaDbEf2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LookupState.cs">
-      <DependentUpon>SpaDbModel.tt</DependentUpon>
+      <DependentUpon>SpaDbEf2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Membership.cs">
-      <DependentUpon>SpaDbModel.tt</DependentUpon>
+      <DependentUpon>SpaDbEf2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Order.cs">
-      <DependentUpon>SpaDbModel.tt</DependentUpon>
+      <DependentUpon>SpaDbEf2.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Package.cs">
-      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    <Compile Include="Models\Product.cs">
+      <DependentUpon>SpaDbEf2.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SpaDbModel.Context.cs">
+    <Compile Include="Models\Service.cs">
+      <DependentUpon>SpaDbEf2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SpaDbEf2.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SpaDbModel.Context.tt</DependentUpon>
+      <DependentUpon>SpaDbEf2.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SpaDbModel.cs">
+    <Compile Include="Models\SpaDbEf2.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SpaDbModel.tt</DependentUpon>
+      <DependentUpon>SpaDbEf2.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SpaDbModel.Designer.cs">
+    <Compile Include="Models\SpaDbEf2.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SpaDbModel.edmx</DependentUpon>
+      <DependentUpon>SpaDbEf2.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Tax.cs">
-      <DependentUpon>SpaDbModel.tt</DependentUpon>
+      <DependentUpon>SpaDbEf2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Treatment.cs">
-      <DependentUpon>SpaDbModel.tt</DependentUpon>
+      <DependentUpon>SpaDbEf2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Voucher.cs">
-      <DependentUpon>SpaDbModel.tt</DependentUpon>
+      <DependentUpon>SpaDbEf2.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\XrefPackageTreatment.cs">
-      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    <Compile Include="Models\XrefServiceTreatment.cs">
+      <DependentUpon>SpaDbEf2.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Models\SpaDbModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SpaDbModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.Config" />
-    <None Include="Models\SpaDbModel.Context.tt">
+    <EntityDeploy Include="Models\SpaDbEf2.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SpaDbEf2.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\SpaDbEf2.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SpaDbModel.edmx</DependentUpon>
-      <LastGenOutput>SpaDbModel.Context.cs</LastGenOutput>
+      <DependentUpon>SpaDbEf2.edmx</DependentUpon>
+      <LastGenOutput>SpaDbEf2.Context.cs</LastGenOutput>
     </None>
-    <None Include="Models\SpaDbModel.edmx.diagram">
-      <DependentUpon>SpaDbModel.edmx</DependentUpon>
+    <None Include="Models\SpaDbEf2.edmx.diagram">
+      <DependentUpon>SpaDbEf2.edmx</DependentUpon>
     </None>
-    <None Include="Models\SpaDbModel.tt">
+    <None Include="Models\SpaDbEf2.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SpaDbModel.edmx</DependentUpon>
-      <LastGenOutput>SpaDbModel.cs</LastGenOutput>
+      <DependentUpon>SpaDbEf2.edmx</DependentUpon>
+      <LastGenOutput>SpaDbEf2.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

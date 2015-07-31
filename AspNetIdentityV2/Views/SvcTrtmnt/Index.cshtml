@@ -1,0 +1,206 @@
+﻿@*@model IEnumerable<SpaCloud.Models.DbModel.XrefServiceTreatment>*@
+@model SpaCloud.Models.ViewModel.ServiceTreatmentViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.Partial("_MainMenu", "Business Settings/Services and Treatments")
+@*@Html.Partial("_MainSubMenuBusinessSetup", "Services and Treatments")*@
+<br />
+
+<h4>Manage Services and Treatments</h4>
+<hr />
+<br />
+
+<div class="row">
+
+    <div class="col-md-4">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">All Services</h3>
+            </div>
+
+            <table class="table table-striped table-condensed">
+
+                @foreach (var item in Model.Services)
+                {
+                    <tr>
+                        <td>
+
+                            <div class="row">
+                                <div class="col-xs-8 col-sm-8">
+                                    @item.ServiceName
+                                </div>
+                                <div class="col-xs-4 col-sm-4">
+
+                                    <button id="@item.ServiceID" class="btn btn-default EditSvcLink" data-toggle="tooltip" data-placement="left" title="Edit Service">
+                                        <i style="color:#5e70ff;" class="glyphicon glyphicon-pencil"></i>
+                                    </button> |
+
+                                    <a style="" class="btn btn-default" href="@Url.Action("RemoveSvc", "SvcTrtmnt", new { id = item.ServiceID })" data-toggle="tooltip" data-placement="right" title="Delete Service">
+                                        <i style="color:#ff7070;" class="glyphicon glyphicon-trash"></i>
+                                    </a>
+
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+            <div class="panel-footer">
+                <button type="button" class="btn btn-success CreateSvcLink" data-toggle="modal" data-target="#CreateSvcModal">Add New Service</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">All Treatments</h3>
+            </div>
+
+            <table class="table table-striped table-condensed">
+
+                @foreach (var item in Model.Treatments)
+                {
+                    <tr>
+                        <td>
+                            <p style="padding-left:1em;">
+                                @item.TreatmentName (@item.TreatmentDuration mins) @Html.ActionLink("Remove", "RemovePkg", new { id = item.TreatmentID }) | @Html.ActionLink("Edit", "Edit", new { id = item.TreatmentID })
+                            </p>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+            <div class="panel-footer">
+                <button type="button" class="btn btn-success CreateTreatmentLink" data-toggle="modal" data-target="#CreateTreatmentModal">Add New Treatment</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Services and Treatments</h3>
+            </div>
+            @*<div class="panel-body">
+                </div>*@
+
+            <table class="table table-condensed">
+
+                @{
+                    var _prevPkg = String.Empty;
+                    var _currPkg = String.Empty;
+
+                    foreach (var item in Model.SvcTrtmntMappings)
+                    {
+                        { _currPkg = item.Service.ServiceName; }
+
+                        if (!String.Equals(_prevPkg, _currPkg))
+                        {
+                            <tr class="info">
+                                <td>
+                                    <p style="padding-left:1em;"><b>@item.Service.ServiceName</b> @Html.ActionLink("Add Treatments", "Add", new { id = item.Service.ServiceID }) | @Html.ActionLink("Remove Service", "Delete", new { id = item.Service.ServiceID })</p>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <p style="padding-left:2em;">@item.Treatment.TreatmentName  (@item.Treatment.TreatmentDuration mins) @Html.ActionLink("Remove", "Remove", new { id = item.Treatment.TreatmentID })</p>
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <td>
+                                    <p style="padding-left:2em;">@item.Treatment.TreatmentName (@item.Treatment.TreatmentDuration mins) @Html.ActionLink("Remove", "Remove", new { id = item.Treatment.TreatmentID })</p>
+                                </td>
+                            </tr>
+
+                        }
+
+                        {
+                            _prevPkg = item.Service.ServiceName;
+
+                            _currPkg = String.Empty;
+                        }
+                    }
+
+                }
+
+            </table>
+
+            <div class="panel-footer">
+                <button type="button" class="btn btn-success">Add New Mapping</button>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+
+<div class="modal fade" id="CreateSvcModal" tabindex="-1" role="dialog" aria-labelledby="CreateSvcModalLabel">
+    <div id="Create-svc-container"></div>
+</div>
+
+<div class="modal fade" id="EditSvcModal" tabindex="-1" role="dialog" aria-labelledby="EditSvcModalLabel">
+    <div id="Edit-svc-container"></div>
+</div>
+
+<div class="modal fade" id="CreateTreatmentModal" tabindex="-1" role="dialog" aria-labelledby="CreateTreatmentModalLabel">
+    <div id="Create-Treatment-container"></div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+        $('.CreateSvcLink').click(function () {
+
+            var url = "/SvcTrtmnt/CreateSvc"; // the url to create svc in controller
+
+            $.get(url + '/', function (data) {
+                $('#Create-svc-container').html(data);
+                $('#CreateSvcModal').modal('show');
+            });
+        });
+
+
+        $('.EditSvcLink').click(function () {
+
+            var url = "/SvcTrtmnt/EditSvc"; // the url to the controller
+            var id = $(this).attr('id'); // the id that's given to each button in the list
+
+            $.get(url + '/' + id, function (data) {
+                $('#Edit-svc-container').html(data);
+                $('#EditSvcModal').modal('show');
+            });
+        });
+
+        $('.CreateTreatmentLink').click(function () {
+
+            var url = "/SvcTrtmnt/CreateTreatment"; // the url to create svc in controller
+
+            $.get(url + '/', function (data) {
+                $('#Create-Treatment-container').html(data);
+                $('#CreateTreatmentModal').modal('show');
+            });
+        });
+
+
+        $('[data-toggle="tooltip"]').tooltip();
+
+    });
+</script>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cfffbbdf944e41e894ac040e1a8a2163" Name="Diagram1" ZoomLevel="63">
+        <EntityTypeShape EntityType="DevTestModel.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevTestModel.AppointmentDiary" Width="1.5" PointX="12.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevTestModel.AspNetRole" Width="1.5" PointX="5.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevTestModel.AspNetUserClaim" Width="1.5" PointX="10.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevTestModel.AspNetUserLogin" Width="1.5" PointX="10.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevTestModel.AspNetUser" Width="1.5" PointX="8" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevTestModel.Branch" Width="1.5" PointX="10" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevTestModel.BranchTreatmentCost" Width="1.5" PointX="12.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevTestModel.Company" Width="1.5" PointX="7.75" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevTestModel.Customer" Width="1.5" PointX="13" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevTestModel.CustomerMembership" Width="1.5" PointX="0.75" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevTestModel.Employee" Width="1.5" PointX="15" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevTestModel.EmployeeType" Width="1.5" PointX="12.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevTestModel.GiftCert" Width="1.5" PointX="2.75" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevTestModel.InventoryRqdForService" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevTestModel.InventoryRqdForTreatment" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevTestModel.LookupBranchRegion" Width="1.5" PointX="4.75" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevTestModel.LookupCountry" Width="1.5" PointX="7.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevTestModel.LookupCustomerType" Width="1.5" PointX="10.75" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevTestModel.LookUpProductUoM" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevTestModel.LookupState" Width="1.5" PointX="10" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevTestModel.Membership" Width="1.5" PointX="14.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevTestModel.Order" Width="1.5" PointX="14.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevTestModel.Product" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevTestModel.Service" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevTestModel.Tax" Width="1.5" PointX="15.75" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevTestModel.Treatment" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevTestModel.Voucher" Width="1.5" PointX="15.75" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevTestModel.XrefServiceTreatment" Width="1.5" PointX="5.25" PointY="12" IsExpanded="true" />
+        <AssociationConnector Association="DevTestModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="DevTestModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="DevTestModel.FK_Branch_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="DevTestModel.FK_Customer_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="DevTestModel.FK_Customer_LookupCustomerType" ManuallyRouted="false" />
+        <AssociationConnector Association="DevTestModel.FK_Employee_LookupEmployeeType" ManuallyRouted="false" />
+        <AssociationConnector Association="DevTestModel.FK_InventoryRqdForService_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="DevTestModel.FK_InventoryRqdForService_Service" ManuallyRouted="false" />
+        <AssociationConnector Association="DevTestModel.FK_InventoryRqdForTreatment_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="DevTestModel.FK_InventoryRqdForTreatment_Treatment" ManuallyRouted="false" />
+        <AssociationConnector Association="DevTestModel.FK_LookupState_LookupCountry" ManuallyRouted="false" />
+        <AssociationConnector Association="DevTestModel.FK_Product_LookUpProductUoM" ManuallyRouted="false" />
+        <AssociationConnector Association="DevTestModel.FK_XrefServiceTreatment_Service" ManuallyRouted="false" />
+        <AssociationConnector Association="DevTestModel.FK_XrefServiceTreatment_Treatment" ManuallyRouted="false" />
+        <AssociationConnector Association="DevTestModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

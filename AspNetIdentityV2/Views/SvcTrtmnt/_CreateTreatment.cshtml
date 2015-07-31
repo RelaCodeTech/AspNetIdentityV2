@@ -1,0 +1,102 @@
+﻿@model SpaCloud.Models.ViewModel.InvntryRqdFrTrtmntViewModel
+
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="CreateTreatmentModalLabel">Add New Treatment</h4>
+        </div>
+
+
+        @using (Html.BeginForm("CreateTreatment", "SvcTrtmnt", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="modal-body">
+
+
+                <div class="form-horizontal">
+
+                    @Html.ValidationSummary(true)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NewTreatment.TreatmentName, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.NewTreatment.TreatmentName)
+                            @Html.ValidationMessageFor(model => model.NewTreatment.TreatmentName)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NewTreatment.TreatmentDesc, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.NewTreatment.TreatmentDesc)
+                            @Html.ValidationMessageFor(model => model.NewTreatment.TreatmentDesc)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NewTreatment.TreatmentDuration, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.NewTreatment.TreatmentDuration)
+                            @Html.ValidationMessageFor(model => model.NewTreatment.TreatmentDuration)
+                        </div>
+                    </div>
+
+                    <hr />
+                    <p><b>Select Products and its quantity required for this Treatment</b></p>
+                    <br />
+
+                    <table class="table table-condensed">
+
+                        <tr>
+                            <td>Product</td>
+                            <td>UoM</td>
+                            <td>Std Qty</td>
+                            <td>Qty Reqd</td>
+                        </tr>
+
+
+                        @foreach (var product in Model.ProductList)
+                        {
+                            <tr>
+                                <td>
+                                    <input type="checkbox" id="@product.ProductID" value="@product.ProductID" /> @product.ProductCode
+                                </td>
+                                <td>
+                                    @product.ProductUoM
+                                </td>
+                                <td>
+                                    @product.ProductWeight
+                                </td>
+                                <td>
+                                    <input type="text" />
+                                </td>
+                           </tr>
+                        }
+
+                    </table>
+
+
+                    <div class="form-group modal-footer">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-success" />
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        }
+
+        @*<div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>*@
+
+    </div>
+</div>
+
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

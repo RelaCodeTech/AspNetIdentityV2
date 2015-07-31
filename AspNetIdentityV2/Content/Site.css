@@ -51,11 +51,42 @@ Color codes -
     #EDEDED; /*--vry light grey for text
     #f5f5f5; /*--vry light grey for text
 
+    #D9EDF7; /*--bootstrap very-light-blue - panel-header-info
+    #222222; --bootstrap navbar-invert black color
+
 
 ******************************************************************************************************************/
 
+.navbar-customized {
+    background-color:#EDEDED;
+}
 
-/*background color for active main-menu*/
+.navbar-customized-togglebtn {
+    border-color:#0C8CAF;
+}
+
+.navbar-customized-togglebtn > .icon-bar {
+    background-color:#222222;
+}
+
+/*background color for active main-menu-navbar*/
+.navbar-mainmenu-ul > .active-nav > a,
+.navbar-mainmenu-ul > .active-nav > a:hover, 
+.navbar-mainmenu-ul > .active-nav > a:active,
+.navbar-mainmenu-ul > .active-nav > a:focus {
+    background-color: #0C8CAF; 
+    color:#EDEDED;
+}
+
+
+
+/*overriding bootstrap coloring for default active nav-bar*/
+/*.navbar-default .navbar-nav > li > a {
+    color:#EDEDED;
+}*/
+
+
+/*background color for active main-menu - NOT IN USE*/
 .nav-tabs > .active-tab > a, .nav-tabs > .active-tab > a:hover {
     /*background-color: #e5e5e5;
     color:#2c2c2c;*/
@@ -69,7 +100,7 @@ Color codes -
     background-color:#f5f5f5;
 }
 
-/*background color for active sub-menu pill*/
+/*background color for active sub-menu pill - NOT IN USE*/
 .nav-pills > .active-pill > a, .nav-pills > .active-pill > a:hover {
     /*background-color: #75d870; --Green
     color:#2c2c2c;*/
@@ -79,7 +110,7 @@ Color codes -
     color:#f5f5f5;
 }
 
-/*reducing height of sub-menu*/
+/*reducing height of sub-menu - NOT IN USE*/
 .nav-pills > li > a
 {
     /* adjust padding for height*/

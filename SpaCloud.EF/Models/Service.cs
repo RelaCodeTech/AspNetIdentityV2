@@ -12,19 +12,21 @@ namespace SpaCloud.EF.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Package
+    public partial class Service
     {
-        public Package()
+        public Service()
         {
-            this.XrefPackageTreatments = new HashSet<XrefPackageTreatment>();
+            this.InventoryRqdForServices = new HashSet<InventoryRqdForService>();
+            this.XrefServiceTreatments = new HashSet<XrefServiceTreatment>();
         }
     
-        public long PackageID { get; set; }
+        public long ServiceID { get; set; }
         public long CompanyID { get; set; }
-        public string PackageName { get; set; }
-        public string PackageDesc { get; set; }
+        public string ServiceName { get; set; }
+        public string ServiceDesc { get; set; }
         public System.DateTime CreatedDt { get; set; }
     
-        public virtual ICollection<XrefPackageTreatment> XrefPackageTreatments { get; set; }
+        public virtual ICollection<InventoryRqdForService> InventoryRqdForServices { get; set; }
+        public virtual ICollection<XrefServiceTreatment> XrefServiceTreatments { get; set; }
     }
 }

@@ -65,14 +65,20 @@
     <Compile Include="DbModel\Company.cs" />
     <Compile Include="DbModel\Customer.cs" />
     <Compile Include="DbModel\Employee.cs" />
+    <Compile Include="DbModel\InventoryRqdForService.cs" />
+    <Compile Include="DbModel\InventoryRqdForTreatment.cs" />
     <Compile Include="DbModel\LookupCustomerType.cs" />
     <Compile Include="DbModel\LookupEmployeeType.cs" />
+    <Compile Include="DbModel\LookUpProductUoM.cs" />
+    <Compile Include="DbModel\Product.cs" />
     <Compile Include="DbModel\Service.cs" />
     <Compile Include="DbModel\Treatment.cs" />
     <Compile Include="DbModel\XrefPackageTreatment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\AccountViewModels.cs" />
+    <Compile Include="ViewModel\InvntryRqdFrTrtmntViewModel.cs" />
     <Compile Include="ViewModel\CreateUserViewModel.cs" />
+    <Compile Include="ViewModel\ProductBasicDetailsViewModel.cs" />
     <Compile Include="ViewModel\ServiceTreatmentViewModel.cs" />
   </ItemGroup>
   <ItemGroup />

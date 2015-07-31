@@ -1,0 +1,21 @@
+﻿using SpaCloud.Models.DbModel;
+using SpaCloud.Models.ViewModel;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SpaCloud.Models.DAL
+{
+    public interface ISvcTrtmntRepository
+    {
+        ServiceTreatmentViewModel GetAllSvcTrtmnts(Int64 companyID);
+        void AddNewService(Int64 companyID, Service NewService);
+        Service GetSvcByID(int SvcId);
+        void UpdateService(Int64 companyID, Service UpdatedService);
+        void DeleteService(int id);
+
+        IEnumerable<ProductBasicDetailsViewModel> GetAllProductsWithBasicDetails(Int64 companyID);
+    }
+}

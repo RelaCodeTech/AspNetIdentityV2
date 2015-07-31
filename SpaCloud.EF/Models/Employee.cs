@@ -16,7 +16,7 @@ namespace SpaCloud.EF.Models
     {
         public long EmpID { get; set; }
         public long CompanyID { get; set; }
-        public long BranchID { get; set; }
+        public long BaseBranchID { get; set; }
         public string EmpCode { get; set; }
         public string EmpFName { get; set; }
         public string EmpLName { get; set; }
@@ -27,9 +27,7 @@ namespace SpaCloud.EF.Models
         public string IsActive { get; set; }
         public System.DateTime EmpCreatedDt { get; set; }
         public string EmpCreatedBy { get; set; }
-        public long BaseBranchID { get; set; }
     
-        public virtual LookupEmployeeType LookupEmployeeType { get; set; }
         public virtual EmployeeType EmployeeType { get; set; }
     }
 }

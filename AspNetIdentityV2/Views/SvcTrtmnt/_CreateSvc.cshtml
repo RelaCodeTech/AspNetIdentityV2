@@ -1,34 +1,24 @@
 ﻿@model SpaCloud.Models.DbModel.Service
 
-
 <div class="modal-dialog" role="document">
     <div class="modal-content">
 
+
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="EditSvcModalLabel">Edit Service</h4>
+            <h4 class="modal-title" id="CreateSvcModalLabel">Add New Service</h4>
         </div>
 
 
-        @using (Html.BeginForm("EditSvc", "SvcTrtmnt", FormMethod.Post))
+        @using (Html.BeginForm("CreateSvc", "SvcTrtmnt", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
 
             <div class="modal-body">
 
                 <div class="form-horizontal">
-                    @*<h4>Service</h4>
-                        <hr />*@
-                    @Html.ValidationSummary(true)
-                    @Html.HiddenFor(model => model.ServiceID)
 
-                    @*<div class="form-group">
-                            @Html.LabelFor(model => model.CompanyID, new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.CompanyID)
-                                @Html.ValidationMessageFor(model => model.CompanyID)
-                            </div>
-                        </div>*@
+                    @Html.ValidationSummary(true)
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.ServiceName, new { @class = "control-label col-md-2" })
@@ -41,39 +31,26 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.ServiceDesc, new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.TextAreaFor(model => model.ServiceDesc)
+                            @Html.EditorFor(model => model.ServiceDesc)
                             @Html.ValidationMessageFor(model => model.ServiceDesc)
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.CreatedDt, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DisplayTextFor(model => model.CreatedDt)
-                            @Html.ValidationMessageFor(model => model.CreatedDt)
                         </div>
                     </div>
 
                     <div class="form-group modal-footer">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Save" class="btn btn-success" />
+                            <input type="submit" value="Create" class="btn btn-success" />
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         </div>
                     </div>
-                </div>
 
+                </div>
 
             </div>
 
-
         }
-
 
     </div>
 </div>
 
 
-
-@*<div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>*@
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

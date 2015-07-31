@@ -394,6 +394,7 @@
     <Content Include="Views\Shared\_EmployeeIndex.cshtml" />
     <Content Include="Views\SvcTrtmnt\_CreateSvc.cshtml" />
     <Content Include="Views\SvcTrtmnt\_EditSvc.cshtml" />
+    <Content Include="Views\SvcTrtmnt\_CreateTreatment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

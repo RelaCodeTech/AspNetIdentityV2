@@ -12,17 +12,14 @@ namespace SpaCloud.EF.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class LookupEmployeeType
+    public partial class InventoryRqdForService
     {
-        public LookupEmployeeType()
-        {
-            this.Employees = new HashSet<Employee>();
-        }
+        public long InventoryRqdForServiceID { get; set; }
+        public long ServiceID { get; set; }
+        public long ProductID { get; set; }
+        public Nullable<decimal> QtyUsed { get; set; }
     
-        public int EmpTypeID { get; set; }
-        public string EmpType { get; set; }
-        public string TypeDesc { get; set; }
-    
-        public virtual ICollection<Employee> Employees { get; set; }
+        public virtual Product Product { get; set; }
+        public virtual Service Service { get; set; }
     }
 }

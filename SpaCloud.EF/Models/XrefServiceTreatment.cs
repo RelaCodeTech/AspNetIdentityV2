@@ -12,14 +12,14 @@ namespace SpaCloud.EF.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class XrefPackageTreatment
+    public partial class XrefServiceTreatment
     {
-        public long PackageTreatmentXrefID { get; set; }
-        public long PackageID { get; set; }
+        public long ServiceTreatmentXrefID { get; set; }
+        public long ServiceID { get; set; }
         public long TreatmentID { get; set; }
         public long CompanyID { get; set; }
     
-        public virtual Package Package { get; set; }
+        public virtual Service Service { get; set; }
         public virtual Treatment Treatment { get; set; }
     }
 }

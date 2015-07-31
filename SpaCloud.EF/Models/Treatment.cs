@@ -16,15 +16,18 @@ namespace SpaCloud.EF.Models
     {
         public Treatment()
         {
-            this.XrefPackageTreatments = new HashSet<XrefPackageTreatment>();
+            this.InventoryRqdForTreatments = new HashSet<InventoryRqdForTreatment>();
+            this.XrefServiceTreatments = new HashSet<XrefServiceTreatment>();
         }
     
         public long TreatmentID { get; set; }
         public long CompanyID { get; set; }
         public string TreatmentName { get; set; }
         public string TreatmentDesc { get; set; }
+        public Nullable<int> TreatmentDuration { get; set; }
         public System.DateTime CreatedDt { get; set; }
     
-        public virtual ICollection<XrefPackageTreatment> XrefPackageTreatments { get; set; }
+        public virtual ICollection<InventoryRqdForTreatment> InventoryRqdForTreatments { get; set; }
+        public virtual ICollection<XrefServiceTreatment> XrefServiceTreatments { get; set; }
     }
 }
