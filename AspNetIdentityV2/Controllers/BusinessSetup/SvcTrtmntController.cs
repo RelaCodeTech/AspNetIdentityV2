@@ -28,7 +28,8 @@ namespace AspNetIdentityV2.Controllers.BusinessSetup
         {
             var account = new AccountController();
             var currentUser = account.UserManager.FindById(User.Identity.GetUserId());
-            return View(this._svcTrtmntRepository.GetAllSvcTrtmnts(currentUser.CompanyID));
+            return View("Index2", this._svcTrtmntRepository.GetAllSvcTrtmnts2(currentUser.CompanyID));
+            //return View(this._svcTrtmntRepository.GetAllSvcTrtmnts(currentUser.CompanyID));
         }
 
         public ActionResult EditSvc(int id)

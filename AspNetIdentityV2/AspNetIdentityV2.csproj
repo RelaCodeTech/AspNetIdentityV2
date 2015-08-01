@@ -392,6 +392,7 @@
     <Content Include="Views\SvcTrtmnt\_CreateSvc.cshtml" />
     <Content Include="Views\SvcTrtmnt\_EditSvc.cshtml" />
     <Content Include="Views\SvcTrtmnt\_CreateTreatment.cshtml" />
+    <Content Include="Views\SvcTrtmnt\Index2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

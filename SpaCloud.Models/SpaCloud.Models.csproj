@@ -73,7 +73,7 @@
     <Compile Include="DbModel\Product.cs" />
     <Compile Include="DbModel\Service.cs" />
     <Compile Include="DbModel\Treatment.cs" />
-    <Compile Include="DbModel\XrefPackageTreatment.cs" />
+    <Compile Include="DbModel\XrefServiceTreatment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\AccountViewModels.cs" />
     <Compile Include="ViewModel\InvntryRqdFrTrtmntViewModel.cs" />

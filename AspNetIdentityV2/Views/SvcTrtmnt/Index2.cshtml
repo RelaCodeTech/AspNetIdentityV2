@@ -1,5 +1,5 @@
-﻿@*@model IEnumerable<SpaCloud.Models.DbModel.XrefServiceTreatment>*@
-@model SpaCloud.Models.ViewModel.ServiceTreatmentViewModel
+﻿@model IEnumerable<SpaCloud.Models.DbModel.XrefServiceTreatment>
+@*@model SpaCloud.Models.ViewModel.ServiceTreatmentViewModel*@
 
 @{
     ViewBag.Title = "Index";
@@ -13,8 +13,8 @@
 
 <div class="row">
 
-    <div class="col-md-4">
-        <div class="panel panel-info">
+    <div class="col-md-1">
+        @*<div class="panel panel-info">
             <div class="panel-heading">
                 <h3 class="panel-title">All Services</h3>
             </div>
@@ -53,11 +53,11 @@
                 <button type="button" class="btn btn-success CreateSvcLink" data-toggle="modal" data-target="#CreateSvcModal">Add New Service</button>
             </div>
 
-        </div>
+        </div>*@
     </div>
 
-    <div class="col-md-4">
-        <div class="panel panel-info">
+    <div class="col-md-1">
+        @*<div class="panel panel-info">
             <div class="panel-heading">
                 <h3 class="panel-title">All Treatments</h3>
             </div>
@@ -85,9 +85,6 @@
                                 </div>
                             </div>
 
-                            @*<p style="padding-left:1em;">
-                                @item.TreatmentName (@item.TreatmentDuration mins) @Html.ActionLink("Remove", "RemovePkg", new { id = item.TreatmentID }) | @Html.ActionLink("Edit", "Edit", new { id = item.TreatmentID })
-                            </p>*@
                         </td>
                     </tr>
                 }
@@ -98,19 +95,19 @@
                 <button type="button" class="btn btn-success CreateTreatmentLink" data-toggle="modal" data-target="#CreateTreatmentModal">Add New Treatment</button>
             </div>
 
-        </div>
+        </div>*@
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-10">
 
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">
-                    Services and Treatments <button type="button" class="btn btn-success CreateSvcLink" data-toggle="modal" data-target="#CreateSvcModal">Add New Service</button>
+                    Services and Treatments <button type="button" class="btn btn-default CreateSvcLink" data-toggle="modal" data-target="#CreateSvcModal">
+                                                <i style="color:#5e70ff;" class="glyphicon glyphicon-plus"></i>&nbsp;Add New Service
+                                            </button>
                 </h3>
             </div>
-            @*<div class="panel-body">
-                </div>*@
 
             <table class="table table-condensed">
 
@@ -118,7 +115,7 @@
                     var _prevPkg = String.Empty;
                     var _currPkg = String.Empty;
 
-                    foreach (var item in Model.SvcTrtmntMappings)
+                    foreach (var item in Model)
                     {
                         { _currPkg = item.Service.ServiceName; }
 
@@ -126,13 +123,30 @@
                         {
                             <tr class="info">
                                 <td>
-                                    <p style="padding-left:1em;"><b>@item.Service.ServiceName</b> @Html.ActionLink("Add Treatments", "Add", new { id = item.Service.ServiceID }) | @Html.ActionLink("Remove Service", "Delete", new { id = item.Service.ServiceID })</p>
+                                    <p style="padding-left:1em;">
+                                        <b>@item.Service.ServiceName</b> 
+
+                                        <button type="button" class="btn btn-success CreateTreatmentLink" data-toggle="modal" data-target="#CreateTreatmentModal">Add New Treatment</button> | 
+
+                                        <button id="@item.Service.ServiceID" class="btn btn-default EditSvcLink" data-toggle="tooltip" data-placement="left" title="Edit Service">
+                                            <i style="color:#5e70ff;" class="glyphicon glyphicon-pencil"></i>
+                                        </button> |
+
+                                        <a style="" class="btn btn-default" href="@Url.Action("RemoveSvc", "SvcTrtmnt", new { id = item.Service.ServiceID })" data-toggle="tooltip" data-placement="right" title="Delete Service">
+                                            <i style="color:#ff7070;" class="glyphicon glyphicon-trash"></i>
+                                        </a>
+
+
+                                    </p>
                                 </td>
                             </tr>
 
                             <tr>
                                 <td>
-                                    <p style="padding-left:2em;">@item.Treatment.TreatmentName  (@item.Treatment.TreatmentDuration mins) @Html.ActionLink("Remove", "Remove", new { id = item.Treatment.TreatmentID })</p>
+                                    @if(item.Treatment != null)
+                                    {
+                                        <p style="padding-left:2em;">@item.Treatment.TreatmentName  (@item.Treatment.TreatmentDuration mins) @Html.ActionLink("Remove", "Remove", new { id = item.Treatment.TreatmentID })</p>
+                                    }
                                 </td>
                             </tr>
                         }
@@ -140,7 +154,10 @@
                         {
                             <tr>
                                 <td>
-                                    <p style="padding-left:2em;">@item.Treatment.TreatmentName (@item.Treatment.TreatmentDuration mins) @Html.ActionLink("Remove", "Remove", new { id = item.Treatment.TreatmentID })</p>
+                                    @if (item.Treatment != null)
+                                    {
+                                        <p style="padding-left:2em;">@item.Treatment.TreatmentName  (@item.Treatment.TreatmentDuration mins) @Html.ActionLink("Remove", "Remove", new { id = item.Treatment.TreatmentID })</p>
+                                    }
                                 </td>
                             </tr>
 

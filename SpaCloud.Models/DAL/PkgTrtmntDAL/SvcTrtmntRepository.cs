@@ -20,6 +20,61 @@ namespace SpaCloud.Models.DAL
             this._con = new SqlConnection(ConfigurationManager.ConnectionStrings[DbConnStringName].ToString());
         }
 
+        public IEnumerable<XrefServiceTreatment> GetAllSvcTrtmnts2(Int64 companyID)
+        {
+            string qryAllMappingData = String.Format(@"
+                                            select trt2.ServiceTreatmentXrefID, svc.*, 
+                                                   trt2.TreatmentID, trt2.TreatmentName, trt2.TreatmentDuration
+                                            from
+                                            (
+	                                            --get all services for a company
+	                                            SELECT distinct ServiceID, ServiceName
+	                                            from [DevTest].[dbo].[Service]
+	                                            where CompanyID = {0}
+
+                                            ) as svc 
+                                            left outer join
+                                            (
+		                                            -- get all trtmnts for a company which are mapped
+	                                               SELECT xref.ServiceTreatmentXrefID, xref.ServiceID, trt.TreatmentID, trt.TreatmentName, trt.TreatmentDuration
+		                                             FROM 
+		                                             [DevTest].[dbo].[XrefServiceTreatment] as xref,
+		                                             [DevTest].[dbo].Treatment as trt
+		                                             where 
+		                                             xref.TreatmentID = trt.TreatmentID
+		                                             and xref.CompanyID = {0}
+                                            )
+                                            as trt2
+                                            on svc.ServiceID = trt2.ServiceID
+                                            order by svc.ServiceID, trt2.TreatmentID", companyID);
+
+            //var FuncQry2ReadAllMappings = new Func<XrefServiceTreatment, Service, Treatment, XrefServiceTreatment>(
+            //        (xref, pkg, trtmnt) =>
+            //        {
+            //            xref.Service = pkg;
+            //            xref.Treatment = trtmnt;
+            //            return xref;
+            //        });
+
+            //using (var multi = this._con.QueryMultiple(sbAllQueries.ToString()))
+            //{
+            //    ViewModelData.Services = multi.Read<Service>().ToList();
+            //    ViewModelData.Treatments = multi.Read<Treatment>().ToList();
+            //    ViewModelData.SvcTrtmntMappings = multi.Read(FuncQry2ReadAllMappings, "ServiceID,TreatmentID").ToList();
+            //}
+
+            var resultList = this._con.Query<XrefServiceTreatment, Service, Treatment, XrefServiceTreatment>(
+                                qryAllMappingData, (xref, pkg, trtmnt) =>
+                                {
+                                    xref.Service = pkg;
+                                    xref.Treatment = trtmnt;
+                                    return xref;
+                                },
+                                 splitOn: "ServiceID,TreatmentID"
+                                 ).AsQueryable();
+            return resultList;
+        }
+
         /// <summary>
         /// Get app Service and treatments data for a company
         /// </summary>

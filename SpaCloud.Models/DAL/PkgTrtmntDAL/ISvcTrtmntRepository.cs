@@ -11,6 +11,8 @@ namespace SpaCloud.Models.DAL
     public interface ISvcTrtmntRepository
     {
         ServiceTreatmentViewModel GetAllSvcTrtmnts(Int64 companyID);
+        IEnumerable<XrefServiceTreatment> GetAllSvcTrtmnts2(Int64 companyID);
+
         void AddNewService(Int64 companyID, Service NewService);
         Service GetSvcByID(int SvcId);
         void UpdateService(Int64 companyID, Service UpdatedService);
