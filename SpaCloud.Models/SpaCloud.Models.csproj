@@ -58,8 +58,8 @@
     <Compile Include="DAL\BranchDAL\IBranchRepository.cs" />
     <Compile Include="DAL\CompanyDAL\ICompanyRepository.cs" />
     <Compile Include="DAL\Employee\IEmployeeRepository.cs" />
-    <Compile Include="DAL\PkgTrtmntDAL\ISvcTrtmntRepository.cs" />
-    <Compile Include="DAL\PkgTrtmntDAL\SvcTrtmntRepository.cs" />
+    <Compile Include="DAL\SvcTrtmntDAL\ISvcTrtmntRepository.cs" />
+    <Compile Include="DAL\SvcTrtmntDAL\SvcTrtmntRepository.cs" />
     <Compile Include="DbModel\Appointment.cs" />
     <Compile Include="DbModel\Branch.cs" />
     <Compile Include="DbModel\Company.cs" />
@@ -76,7 +76,8 @@
     <Compile Include="DbModel\XrefServiceTreatment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\AccountViewModels.cs" />
-    <Compile Include="ViewModel\InvntryRqdFrTrtmntViewModel.cs" />
+    <Compile Include="ViewModel\BasicTreatmentViewModel.cs" />
+    <Compile Include="ViewModel\CreateEditTrtmntViewModel.cs" />
     <Compile Include="ViewModel\CreateUserViewModel.cs" />
     <Compile Include="ViewModel\ProductBasicDetailsViewModel.cs" />
     <Compile Include="ViewModel\ServiceTreatmentViewModel.cs" />

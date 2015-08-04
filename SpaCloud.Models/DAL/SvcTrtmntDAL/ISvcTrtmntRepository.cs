@@ -20,7 +20,13 @@ namespace SpaCloud.Models.DAL
 
         IList<ProductBasicDetailsViewModel> GetAllProductsWithBasicDetails(Int64 companyID);
 
-        void AddNewTreatment(Int64 companyID, InvntryRqdFrTrtmntViewModel NewCreatedTreatment);
-        void DeleteTreatment(int id);
+        void CreateNewTreatment(Int64 companyID, CreateEditTrtmntViewModel NewCreatedTreatment);
+        void AddRmvExstngTrtmnts(Int64 companyID, CreateEditTrtmntViewModel NewCreatedTreatment);
+
+        IEnumerable<BasicTreatmentViewModel> GetAllTreatments(Int64 companyID, Int64 serviceID);
+
+        void RemoveTreatment(int id);
+
+        void DeleteTreatment(long id);
     }
 }

@@ -2,36 +2,28 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpaCloud.Models.DbModel
+namespace SpaCloud.Models.ViewModel
 {
-    public class Treatment
+    [Table("Treatment")]
+    public class BasicTreatmentViewModel
     {
-        public Treatment()
-        {
-            this.XrefServiceTreatments = new HashSet<XrefServiceTreatment>();
-        }
-
         [Key]
         public long TreatmentID { get; set; }
         public long CompanyID { get; set; }
+
+        public bool CheckedStatus { get; set; }
 
         [Display(Name = "Name")]
         [Required]
         public string TreatmentName { get; set; }
 
-        [Display(Name = "Description")]
-        public string TreatmentDesc { get; set; }
-
         [Display(Name = "Duration (mins)")]
         public int TreatmentDuration { get; set; }
 
-        [ReadOnly(true)]
-        public System.DateTime CreatedDt { get; set; }
-
-        public virtual ICollection<XrefServiceTreatment> XrefServiceTreatments { get; set; }
     }
 }

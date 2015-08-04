@@ -1,0 +1,81 @@
+﻿@model SpaCloud.Models.ViewModel.CreateEditTrtmntViewModel
+
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="ManageTreatmentModalLabel">List of all Treatments</h4>
+        </div>
+
+        <div class="modal-body">
+
+            @using (Html.BeginForm("ManageTrtmnt", "SvcTrtmnt", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+
+                    <div class="existing-trtmnt-table">
+
+                        <table class="table table-condensed">
+
+                            <tr>
+                                <td><b>Treatment Name</b></td>
+                                <td><b>Duration</b></td>
+                                <td><b>Actions</b></td>
+                            </tr>
+
+                            @for (int i = 0; i < Model.ExistingTreatments.Count; i++)
+                            {
+                                <tr>
+                                    <td>
+                                        @Model.ExistingTreatments[i].TreatmentName
+                                    </td>
+                                    <td>
+                                        @Model.ExistingTreatments[i].TreatmentDuration
+                                        @Html.HiddenFor(model => Model.ExistingTreatments[i].TreatmentID)
+                                    </td>
+                                    <td>
+
+                                        <a style="" class="btn btn-default" href="@Url.Action("DeleteTreatment", "SvcTrtmnt", new { id = Model.ExistingTreatments[i].TreatmentID })" data-toggle="tooltip" data-placement="right" title="Delete Treatment Permanently">
+                                            <i style="color:#ff7070;" class="glyphicon glyphicon-trash"></i>
+                                        </a>
+
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
+
+                        <div class="form-group modal-footer">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+        </div>
+
+    </div>
+</div>
+
+
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('[data-toggle="tooltip"]').tooltip();
+
+    });
+
+
+</script>
+
+

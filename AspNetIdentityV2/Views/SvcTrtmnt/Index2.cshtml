@@ -13,99 +13,21 @@
 
 <div class="row">
 
-    <div class="col-md-1">
-        @*<div class="panel panel-info">
-            <div class="panel-heading">
-                <h3 class="panel-title">All Services</h3>
-            </div>
-
-            <table class="table table-striped table-condensed">
-
-                @foreach (var item in Model.Services)
-                {
-                    <tr>
-                        <td>
-
-                            <div class="row">
-                                <div class="col-xs-8 col-sm-8">
-                                    @item.ServiceName
-                                </div>
-                                <div class="col-xs-4 col-sm-4">
-
-                                    <button id="@item.ServiceID" class="btn btn-default EditSvcLink" data-toggle="tooltip" data-placement="left" title="Edit Service">
-                                        <i style="color:#5e70ff;" class="glyphicon glyphicon-pencil"></i>
-                                    </button> |
-
-                                    <a style="" class="btn btn-default" href="@Url.Action("RemoveSvc", "SvcTrtmnt", new { id = item.ServiceID })" data-toggle="tooltip" data-placement="right" title="Delete Service">
-                                        <i style="color:#ff7070;" class="glyphicon glyphicon-trash"></i>
-                                    </a>
-
-                                </div>
-                            </div>
-
-                        </td>
-                    </tr>
-                }
-
-            </table>
-
-            <div class="panel-footer">
-                <button type="button" class="btn btn-success CreateSvcLink" data-toggle="modal" data-target="#CreateSvcModal">Add New Service</button>
-            </div>
-
-        </div>*@
-    </div>
-
-    <div class="col-md-1">
-        @*<div class="panel panel-info">
-            <div class="panel-heading">
-                <h3 class="panel-title">All Treatments</h3>
-            </div>
-
-            <table class="table table-striped table-condensed">
-
-                @foreach (var item in Model.Treatments)
-                {
-                    <tr>
-                        <td>
-                            <div class="row">
-                                <div class="col-xs-8 col-sm-8">
-                                    @item.TreatmentName (@item.TreatmentDuration mins)
-                                </div>
-                                <div class="col-xs-4 col-sm-4">
-
-                                    <button id="@item.TreatmentID" class="btn btn-default EditTreatmentLink" data-toggle="tooltip" data-placement="left" title="Edit Treatment">
-                                        <i style="color:#5e70ff;" class="glyphicon glyphicon-pencil"></i>
-                                    </button> |
-
-                                    <a style="" class="btn btn-default" href="@Url.Action("RemoveTreatment", "SvcTrtmnt", new { id = item.TreatmentID })" data-toggle="tooltip" data-placement="right" title="Delete Treatment">
-                                        <i style="color:#ff7070;" class="glyphicon glyphicon-trash"></i>
-                                    </a>
-
-                                </div>
-                            </div>
-
-                        </td>
-                    </tr>
-                }
-
-            </table>
-
-            <div class="panel-footer">
-                <button type="button" class="btn btn-success CreateTreatmentLink" data-toggle="modal" data-target="#CreateTreatmentModal">Add New Treatment</button>
-            </div>
-
-        </div>*@
-    </div>
-
-    <div class="col-md-10">
+    <div class="col-md-12">
 
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">
-                    Services and Treatments <button type="button" class="btn btn-default CreateSvcLink" data-toggle="modal" data-target="#CreateSvcModal">
-                                                <i style="color:#5e70ff;" class="glyphicon glyphicon-plus"></i>&nbsp;Add New Service
-                                            </button>
+                    Services and Treatments 
+                    
+                    <button onclick='this.blur();' type="button" class="btn btn-default CreateSvcLink" data-toggle="modal" data-target="#CreateSvcModal">
+                        <i style="color:#5e70ff;" class="glyphicon glyphicon-plus"></i>&nbsp;Add New Service
+                    </button>
+
+                    <button onclick='this.blur();' type="button" class="btn btn-default ManageTrtmntLink" data-toggle="modal" data-target="#ManageTrtmntModal">
+                        <i style="color:#5e70ff;" class="glyphicon glyphicon-cog"></i>&nbsp;Manage Treatments
+                    </button>
+
                 </h3>
             </div>
 
@@ -123,29 +45,55 @@
                         {
                             <tr class="info">
                                 <td>
-                                    <p style="padding-left:1em;">
-                                        <b>@item.Service.ServiceName</b> 
+                                    @if (item.Service != null)
+                                    {
 
-                                        <button type="button" class="btn btn-success CreateTreatmentLink" data-toggle="modal" data-target="#CreateTreatmentModal">Add New Treatment</button> | 
+                                        <div class="row">
+                                            <div class="col-xs-6 col-sm-8">
+                                                <p style="padding-left:1em;">
+                                                    <b>@item.Service.ServiceName</b>
+                                                </p>
+                                            </div>
+                                            <div class="col-xs-6 col-sm-4">
+                                                <button onclick='this.blur();' id="@item.Service.ServiceID~@item.Service.ServiceName" type="button" class="btn btn-success CreateTreatmentLink" data-toggle="modal" data-target="#CreateTreatmentModal">
+                                                    <i class="glyphicon glyphicon-plus"></i>&nbsp;Add Treatments
+                                                </button> |
+                                                <button onclick='this.blur();' id="@item.Service.ServiceID" class="btn btn-default EditSvcLink" data-toggle="tooltip" data-placement="left" title="Edit Service">
+                                                    <i style="color:#5e70ff;" class="glyphicon glyphicon-pencil"></i>
+                                                </button> |
 
-                                        <button id="@item.Service.ServiceID" class="btn btn-default EditSvcLink" data-toggle="tooltip" data-placement="left" title="Edit Service">
-                                            <i style="color:#5e70ff;" class="glyphicon glyphicon-pencil"></i>
-                                        </button> |
+                                                <a onclick='this.blur();' style="" class="btn btn-default" href="@Url.Action("RemoveSvc", "SvcTrtmnt", new { id = item.Service.ServiceID })" data-toggle="tooltip" data-placement="right" title="Delete Service">
+                                                    <i style="color:#ff7070;" class="glyphicon glyphicon-trash"></i>
+                                                </a>
 
-                                        <a style="" class="btn btn-default" href="@Url.Action("RemoveSvc", "SvcTrtmnt", new { id = item.Service.ServiceID })" data-toggle="tooltip" data-placement="right" title="Delete Service">
-                                            <i style="color:#ff7070;" class="glyphicon glyphicon-trash"></i>
-                                        </a>
+                                            </div>
+                                        </div>
 
 
-                                    </p>
+                                    }
                                 </td>
                             </tr>
 
                             <tr>
                                 <td>
-                                    @if(item.Treatment != null)
+                                    @if (item.Treatment != null)
                                     {
-                                        <p style="padding-left:2em;">@item.Treatment.TreatmentName  (@item.Treatment.TreatmentDuration mins) @Html.ActionLink("Remove", "Remove", new { id = item.Treatment.TreatmentID })</p>
+                                        <div class="row">
+                                            <div class="col-xs-8 col-sm-8">
+                                                <p style="padding-left:2em;">@item.Treatment.TreatmentName (@item.Treatment.TreatmentDuration mins)</p>
+                                            </div>
+                                            <div class="col-xs-4 col-sm-4">
+
+                                                @*<button onclick='this.blur();' id="@item.Treatment.TreatmentID" class="btn btn-default EditTreatmentLink" data-toggle="tooltip" data-placement="left" title="Edit Treatment">
+                                                    <i style="color:#5e70ff;" class="glyphicon glyphicon-pencil"></i>
+                                                </button> |*@
+
+                                                <a onclick='this.blur();' style="" class="btn btn-default" href="@Url.Action("RemoveTreatment", "SvcTrtmnt", new { id = item.Treatment.TreatmentID })" data-toggle="tooltip" data-placement="right" title="Remove Treatment">
+                                                    <i style="color:#ff7070;" class="glyphicon glyphicon-remove"></i>
+                                                </a>
+
+                                            </div>
+                                        </div>
                                     }
                                 </td>
                             </tr>
@@ -156,7 +104,22 @@
                                 <td>
                                     @if (item.Treatment != null)
                                     {
-                                        <p style="padding-left:2em;">@item.Treatment.TreatmentName  (@item.Treatment.TreatmentDuration mins) @Html.ActionLink("Remove", "Remove", new { id = item.Treatment.TreatmentID })</p>
+                                        <div class="row">
+                                            <div class="col-xs-8 col-sm-8">
+                                                <p style="padding-left:2em;">@item.Treatment.TreatmentName (@item.Treatment.TreatmentDuration mins)</p>
+                                            </div>
+                                            <div class="col-xs-4 col-sm-4">
+
+                                                @*<button id="@item.Treatment.TreatmentID" class="btn btn-default EditTreatmentLink" data-toggle="tooltip" data-placement="left" title="Edit Treatment">
+                                                    <i style="color:#5e70ff;" class="glyphicon glyphicon-pencil"></i>
+                                                </button> |*@
+
+                                                <a style="" class="btn btn-default" href="@Url.Action("RemoveTreatment", "SvcTrtmnt", new { id = item.Treatment.TreatmentID })" data-toggle="tooltip" data-placement="right" title="Remove Treatment">
+                                                    <i style="color:#ff7070;" class="glyphicon glyphicon-remove"></i>
+                                                </a>
+
+                                            </div>
+                                        </div>
                                     }
                                 </td>
                             </tr>
@@ -174,9 +137,9 @@
 
             </table>
 
-            <div class="panel-footer">
-                <button type="button" class="btn btn-success">Add New Mapping</button>
-            </div>
+            @*<div class="panel-footer">
+                    <button type="button" class="btn btn-success">Add New Mapping</button>
+                </div>*@
 
 
         </div>
@@ -194,6 +157,10 @@
 
 <div class="modal fade" id="CreateTreatmentModal" tabindex="-1" role="dialog" aria-labelledby="CreateTreatmentModalLabel">
     <div id="Create-Treatment-container"></div>
+</div>
+
+<div class="modal fade" id="ManageTrtmntModal" tabindex="-1" role="dialog" aria-labelledby="ManageTrtmntModalLabel">
+    <div id="Manage-Treatment-container"></div>
 </div>
 
 
@@ -223,11 +190,31 @@
             });
         });
 
+        $('.ManageTrtmntLink').click(function () {
+
+            var url = "/SvcTrtmnt/ManageTrtmnt"; // the url to the controller
+            //var id = $(this).attr('id'); // the id that's given to each button in the list
+
+            $.get(url, function (data) {
+            //$.get(url + '/' + id, function (data) {
+                $('#Manage-Treatment-container').html(data);
+                $('#ManageTrtmntModal').modal('show');
+            });
+        });
+
+
         $('.CreateTreatmentLink').click(function () {
 
-            var url = "/SvcTrtmnt/CreateTreatment"; // the url to create svc in controller
+            //var url = "/SvcTrtmnt/CreateTreatment"; // the url to create svc in controller
+            var url = "/SvcTrtmnt/CreateTreatment2"; // the url to create svc in controller
 
-            $.get(url + '/', function (data) {
+            var id = $(this).attr('id'); // the id that's given to each button in the list
+
+            //alert(url + '/?SvcDetails=' + id);
+
+
+            //$.get(url + '/', function (data) {
+            $.get(url + '/?SvcDetails=' + id, function (data) {
                 $('#Create-Treatment-container').html(data);
                 $('#CreateTreatmentModal').modal('show');
             });

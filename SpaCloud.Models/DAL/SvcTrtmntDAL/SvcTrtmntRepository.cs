@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Dapper;
 using SpaCloud.Models.ViewModel;
+using System.Data;
 
 namespace SpaCloud.Models.DAL
 {
@@ -147,11 +148,11 @@ namespace SpaCloud.Models.DAL
         }
 
         /// <summary>
-        /// Add new treatment and its reqd products
+        /// Create new treatment and add reference into XrefServiceTreatment table
         /// </summary>
         /// <param name="companyID"></param>
         /// <param name="NewCreatedTreatment"></param>
-        public void AddNewTreatment(Int64 companyID, InvntryRqdFrTrtmntViewModel NewCreatedTreatment)
+        public void CreateNewTreatment(Int64 companyID, CreateEditTrtmntViewModel NewCreatedTreatment)
         {
             // newTrtmntID = newly created treatment id
             long newTrtmntID = this._con.Insert<long>(new Treatment
@@ -162,20 +163,75 @@ namespace SpaCloud.Models.DAL
                 TreatmentDuration = NewCreatedTreatment.NewTreatment.TreatmentDuration
             });
 
-            //filling in new treatment id
-            foreach (var invtryRqd in NewCreatedTreatment.ListOfInvntryRqdFrTreatment)
+            //insert into XrefServiceTreatment table
+            this._con.Insert<long>(new XrefServiceTreatment
             {
-                invtryRqd.TreatmentID = newTrtmntID;
-                //this._con.Insert(invtryRqd);  //using dapper.simpleCRUD
-            }
-
-            //using dapper.net
-            string qryInsertListIntoInventoryRqdForTreatment = @"insert into [dbo].[InventoryRqdForTreatment] values (@TreatmentID, @ProductID, @QtyUsed)";
-            
-            //insert List using dapper.net
-            this._con.Execute(qryInsertListIntoInventoryRqdForTreatment, NewCreatedTreatment.ListOfInvntryRqdFrTreatment);
+                CompanyID = companyID,
+                ServiceID = NewCreatedTreatment.SvcID,
+                TreatmentID = newTrtmntID,
+            });
 
         }
+
+        /// <summary>
+        /// Add/Remove existing treatment mappings with service
+        /// </summary>
+        /// <param name="companyID"></param>
+        /// <param name="NewCreatedTreatment"></param>
+        public void AddRmvExstngTrtmnts(Int64 companyID, CreateEditTrtmntViewModel NewCreatedTreatment)
+        {
+            ////using dapper.net
+            string qryInsertListIntoXrefServiceTreatment = @"insert into [dbo].[XrefServiceTreatment] ([ServiceID], [TreatmentID], [CompanyID]) values (@ServiceID, @TreatmentID, @CompanyID)";
+
+            this._con.Open();
+            IDbTransaction transact = this._con.BeginTransaction();
+
+            //first delete all svc-trtmnt mappings from XrefServiceTreatment table
+            this._con.DeleteList<XrefServiceTreatment>(" where ServiceID = " + NewCreatedTreatment.SvcID, transact);
+
+            // if treatments are checked - enter values only into XrefServiceTreatment
+            foreach (var item in NewCreatedTreatment.ExistingTreatments)
+            {
+                if (item.CheckedStatus)
+                {
+                    //insert into XrefServiceTreatment
+                    ////insert List using dapper.net
+                    XrefServiceTreatment newXref = new XrefServiceTreatment(NewCreatedTreatment.SvcID, item.TreatmentID, companyID);
+                    this._con.Execute(qryInsertListIntoXrefServiceTreatment, newXref, transact);
+
+                }
+            }
+
+            transact.Commit();
+            this._con.Close();
+
+            return;
+        }
+
+        /// <summary>
+        /// Get all existing treatments
+        /// </summary>
+        /// <param name="companyID"></param>
+        /// <returns></returns>
+        public IEnumerable<BasicTreatmentViewModel> GetAllTreatments(Int64 companyID, Int64 serviceID)
+        {
+            string qryAllTreatments = String.Format("select [TreatmentID], [CompanyID], [TreatmentName], [TreatmentDuration] from [dbo].[Treatment] where CompanyID = {0}", companyID);
+            string qrySvc2TrtmntMappings = String.Format("select [ServiceID], [TreatmentID], [CompanyID] from [dbo].[XrefServiceTreatment] where CompanyID = {0} and [ServiceID] = {1}", companyID, serviceID);
+
+            var AllTreatments = this._con.Query<BasicTreatmentViewModel>(qryAllTreatments);
+            var Svc2TrtmntMappings = (List<XrefServiceTreatment>)this._con.Query<XrefServiceTreatment>(qrySvc2TrtmntMappings);
+
+            HashSet<Int64> TrtmntIDs = new HashSet<Int64>(Svc2TrtmntMappings.Select(s => s.TreatmentID));
+            var MappedTrtmnts = AllTreatments.Where(m => TrtmntIDs.Contains(m.TreatmentID));
+
+            MappedTrtmnts.All(m => m.CheckedStatus = true);
+
+            return (IEnumerable<BasicTreatmentViewModel>)AllTreatments.Union(MappedTrtmnts).ToList();
+
+
+            //return this._con.Query<BasicTreatmentViewModel>(qryAllTreatments);
+        }
+
 
         /// <summary>
         /// Get Service by id
@@ -215,22 +271,43 @@ namespace SpaCloud.Models.DAL
         /// <param name="id"></param>
         public void DeleteService(int id)
         {
-            //string qryDeleteSvc = String.Format("Delete from [dbo].[Service] where ServiceID = {0}", id);
+            //delete dependant table data - XrefServiceTreatment
+            this._con.DeleteList<XrefServiceTreatment>(" where ServiceID = " + id);
+
+            //delete from main service table
             this._con.Delete<Service>(id);
         }
 
         /// <summary>
-        /// delete a treatment
+        /// delete a treatment-svc mapping
         /// </summary>
         /// <param name="id"></param>
-        public void DeleteTreatment(int id)
+        public void RemoveTreatment(int id)
         {
             //delete dependant table data - InventoryRqdForTreatment
-            this._con.DeleteList<InventoryRqdForTreatment>(" where TreatmentID = " + id);
+            //this._con.DeleteList<InventoryRqdForTreatment>(" where TreatmentID = " + id);
+
+            //delete dependant table data - XrefServiceTreatment
+            this._con.DeleteList<XrefServiceTreatment>(" where TreatmentID = " + id);
+
+            //delete Treatment
+            //this._con.Delete<Treatment>(id);
+        }
+
+        /// <summary>
+        /// Deletes treatment permanantly
+        /// </summary>
+        /// <param name="id"></param>
+        public void DeleteTreatment(long id)
+        {
+            //delete dependant table data - XrefServiceTreatment
+            this._con.DeleteList<XrefServiceTreatment>(" where TreatmentID = " + id);
 
             //delete Treatment
             this._con.Delete<Treatment>(id);
         }
+
+        //public void DeleteTreat
 
         /// <summary>
         /// gets list of all proudcts with basic details
@@ -255,7 +332,7 @@ namespace SpaCloud.Models.DAL
                                           and a.[CompanyID] = {0}      
                                                     ", companyID);
 
-            return (IList<ProductBasicDetailsViewModel>) this._con.Query<ProductBasicDetailsViewModel>(qryGetProducts);
+            return (IList<ProductBasicDetailsViewModel>)this._con.Query<ProductBasicDetailsViewModel>(qryGetProducts);
 
         }
 
